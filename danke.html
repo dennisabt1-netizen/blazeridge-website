@@ -31,7 +31,7 @@
 <main class="auth-main">
   <p class="kicker">Shop</p>
   <h1>Danke für <em>deinen Kauf.</em></h1>
-  <p class="lead" id="thanks">Wenn Stripe dich hierher geschickt hat, ist die Zahlung dort abgeschlossen. Die Rechnung kommt per E-Mail.</p>
+  <p class="lead" id="thanks">Stripe zeigt die Zahlungsbestätigung. Der Download erscheint auf dieser Seite direkt nach der Zahlung. Fragen an <a href="mailto:einkaufnow@outlook.de">einkaufnow@outlook.de</a> (Impressum).</p>
   <div class="notice" id="delivery" role="status">
     <strong>Download</strong>
     <p id="delivery-text">Die bezahlten Dateien liegen nicht öffentlich auf dieser Website. Die Auslieferung ist noch nicht angeschlossen.</p>
@@ -52,11 +52,11 @@
   var box = document.getElementById("delivery-text");
   var ready = url.indexOf("https://") === 0 && url.indexOf("supabase.co/functions/") !== -1;
   if (!sid) {
-    box.textContent = "Ohne Sitzungsnummer aus Stripe kann hier nichts freigeschaltet werden. Die Rechnung kommt trotzdem per E-Mail.";
+    box.textContent = "Ohne Sitzungsnummer aus Stripe kann der Download hier nicht erscheinen. Die Zahlungsbestätigung siehst du bei Stripe. Fragen an einkaufnow@outlook.de.";
     return;
   }
   if (!ready) {
-    box.textContent = "Zahlung gesehen (Sitzung " + sid.slice(0, 8) + "…). Der Download-Dienst ist noch nicht eingerichtet. Es wird kein Geheimnis und keine Datei von hier geladen. Schreib an einkaufnow@outlook.de, wenn die Mail fehlt.";
+    box.textContent = "Die Zahlungsbestätigung siehst du bei Stripe. Der Download soll auf dieser Seite direkt nach der Zahlung erscheinen; der Dienst ist noch nicht eingerichtet. Fragen an einkaufnow@outlook.de.";
     return;
   }
   box.textContent = "Download wird geprüft …";
@@ -73,10 +73,10 @@
         document.getElementById("delivery").appendChild(a);
         return;
       }
-      box.textContent = (result.data && result.data.message) || "Die Datei ist noch nicht hinterlegt. Die Rechnung kommt per E-Mail.";
+      box.textContent = (result.data && result.data.message) || "Die Datei ist noch nicht hinterlegt. Die Zahlungsbestätigung siehst du bei Stripe. Fragen an einkaufnow@outlook.de.";
     })
     .catch(function () {
-      box.textContent = "Der Download-Dienst antwortet gerade nicht. Die Rechnung kommt per E-Mail.";
+      box.textContent = "Der Download-Dienst antwortet gerade nicht. Die Zahlungsbestätigung siehst du bei Stripe. Fragen an einkaufnow@outlook.de.";
     });
 })();
 </script>
