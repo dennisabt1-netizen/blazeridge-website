@@ -48,7 +48,7 @@ Deno.serve(async (req) => {
   const item = typeof session.payment_link === "string" ? FILES[session.payment_link] : undefined;
   if (!item) return json(404, { message: "Zu diesem Kauf gibt es keine Datei." });
   if ("service" in item) {
-    return json(200, { message: "Firmenvideo-Pilot: kein Download. Wir melden uns per E-Mail." });
+    return json(200, { message: "Firmenvideo-Pilot: kein Download. Fragen an einkaufnow@outlook.de." });
   }
   if (session.amount_total !== item.amount) {
     return json(402, { message: "Der bezahlte Betrag passt nicht zum Produkt." });
