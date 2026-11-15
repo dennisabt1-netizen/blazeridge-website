@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Danke – BlazeRidge</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307060A'/%3E%3Cpath d='M18 46 32 14l14 32' stroke='%23FF6A1A' stroke-width='7' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link href="media/fonts/fonts.css" rel="stylesheet">
+<link href="auth.css" rel="stylesheet">
+</head>
+<body>
+<div class="auth-bg" aria-hidden="true"></div>
+<header class="nav">
+  <a class="brand" href="./" aria-label="BlazeRidge Startseite">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 50 32 12l18 38" stroke="#FF6A1A" stroke-width="7" fill="none" stroke-linejoin="round"/><path d="M24 50h16" stroke="#F6F2F7" stroke-width="6"/></svg>
+    BlazeRidge
+  </a>
+  <nav class="pill" aria-label="Bereiche">
+    <a href="./#videos">Videos</a>
+    <a href="./#tauchgang">Tauchgang</a>
+    <a href="./#serien">Serien</a>
+    <a href="./#tipps">Smart-Home-Tipps</a>
+    <a href="shop.html" data-shop-nav>Shop</a>
+    <a href="login.html" data-auth-nav>Login</a>
+  </nav>
+  <a class="btn btn-primary" href="https://www.tiktok.com/@blazeridge" target="_blank" rel="noopener">Folgen
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+  </a>
+</header>
+<main class="auth-main">
+  <p class="kicker">Shop</p>
+  <h1>Danke für <em>deinen Kauf.</em></h1>
+  <p class="lead" id="thanks">Wenn Stripe dich hierher geschickt hat, ist die Zahlung dort abgeschlossen. Die Rechnung kommt per E-Mail.</p>
+  <div class="notice" id="delivery" role="status">
+    <strong>Download</strong>
+    <p id="delivery-text">Die bezahlten Dateien liegen nicht öffentlich auf dieser Website. Die Auslieferung ist noch nicht angeschlossen.</p>
+  </div>
+  <p class="switch"><a href="shop.html">Zurück zum Shop</a> · <a href="agb.html">AGB</a> · <a href="widerrufsbelehrung.html">Widerruf</a></p>
+</main>
+<footer>
+  <span>© 2026 BlazeRidge</span>
+  <span>Videos mit KI-Bildern + KI-Stimme · <a href="impressum.html">Impressum</a> · <a href="agb.html">AGB</a> · <a href="widerrufsbelehrung.html">Widerruf</a> · <a href="datenschutz.html">Datenschutz</a></span>
+</footer>
+<script src="js/shop-config.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var sid = q.get("session_id") || "";
+  var cfg = window.BLAZERIDGE_SHOP || {};
+  var url = String(cfg.deliverUrl || "").trim();
+  var box = document.getElementById("delivery-text");
+  var ready = url.indexOf("https://") === 0 && url.indexOf("supabase.co/functions/") !== -1;
+  if (!sid) {
+    box.textContent = "Ohne Sitzungsnummer aus Stripe kann hier nichts freigeschaltet werden. Die Rechnung kommt trotzdem per E-Mail.";
+    return;
+  }
+  if (!ready) {
+    box.textContent = "Zahlung gesehen (Sitzung " + sid.slice(0, 8) + "…). Der Download-Dienst ist noch nicht eingerichtet. Es wird kein Geheimnis und keine Datei von hier geladen. Schreib an einkaufnow@outlook.de, wenn die Mail fehlt.";
+    return;
+  }
+  box.textContent = "Download wird geprüft …";
+  fetch(url + "?session_id=" + encodeURIComponent(sid), { method: "GET" })
+    .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+    .then(function (result) {
+      if (result.ok && result.data && result.data.url) {
+        box.textContent = "Deine Datei ist bereit.";
+        var a = document.createElement("a");
+        a.href = result.data.url;
+        a.textContent = "Datei laden";
+        a.className = "btn btn-primary";
+        a.style.marginTop = "14px";
+        document.getElementById("delivery").appendChild(a);
+        return;
+      }
+      box.textContent = (result.data && result.data.message) || "Die Datei ist noch nicht hinterlegt. Die Rechnung kommt per E-Mail.";
+    })
+    .catch(function () {
+      box.textContent = "Der Download-Dienst antwortet gerade nicht. Die Rechnung kommt per E-Mail.";
+    });
+})();
+</script>
+<script src="js/auth-config.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>
