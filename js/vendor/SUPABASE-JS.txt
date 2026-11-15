@@ -1,0 +1,9 @@
+@supabase/supabase-js 2.119.0
+License: MIT
+Source: https://github.com/supabase/supabase-js
+File: supabase.js — unmodified UMD build from
+https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/dist/umd/supabase.js
+
+Self-hosted so the website does not contact a CDN when someone opens a page.
+The file is loaded only after js/auth-config.js contains a real public anon
+or publishable key.
