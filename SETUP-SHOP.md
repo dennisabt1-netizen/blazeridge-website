@@ -29,3 +29,10 @@ Nicht committen, nicht in den Chat einer fremden Person:
 6. Bei jedem Payment Link als Erfolgsseite setzen: `https://blazeridge.de/danke.html?session_id={CHECKOUT_SESSION_ID}`
 
 `SUPABASE_SERVICE_ROLE_KEY` setzt Supabase in der Function selbst. Der gehört ebenfalls nicht ins Frontend.
+
+## Stand 2026-11-15
+
+- Bucket `shop-downloads` angelegt (privat, nur ZIP, max. 50 MB), die vier ZIPs liegen drin. Anonym weder lesbar noch listbar.
+- Function `deliver` deployt (verify_jwt aus). Zuordnung über die Payment-Link-ID der Checkout-Sitzung, Betrag wird zusätzlich geprüft. Der Firmenvideo-Pilot bekommt nie eine Datei.
+- `js/shop-config.js` zeigt auf die Function.
+- Offen: Secret `STRIPE_SECRET_KEY` (eingeschränkter Schlüssel, nur „Checkout Sessions: Read“). Bis dahin antwortet die Function mit 503 „Lieferung ist noch nicht eingerichtet.“

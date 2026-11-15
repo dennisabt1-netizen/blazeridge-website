@@ -2,12 +2,15 @@
 // Secret (do not commit): supabase secrets set STRIPE_SECRET_KEY=sk_live_...
 // The key only needs Checkout Session read access. Never put it in the website.
 
-const FILES: Record<number, { name: string; path: string } | { service: true }> = {
-  700: { name: "starter.zip", path: "starter.zip" },
-  1900: { name: "producer.zip", path: "producer.zip" },
-  3900: { name: "studio.zip", path: "studio.zip" },
-  1200: { name: "video-briefing-set.zip", path: "video-briefing-set.zip" },
-  39000: { service: true },
+// Mapping by Stripe Payment Link id; the amount must match as a second check.
+type Item = { name: string; path: string; amount: number } | { service: true; amount: number };
+const FILES: Record<string, Item> = {
+  plink_1Ubs3oJ80ahw41gOkrK4Aab9: { name: "starter.zip", path: "starter.zip", amount: 700 },
+  plink_1Ubs3pJ80ahw41gOYGybJRUC: { name: "producer.zip", path: "producer.zip", amount: 1900 },
+  plink_1Ubs3qJ80ahw41gOkjdxV43Z: { name: "studio.zip", path: "studio.zip", amount: 3900 },
+  plink_1Ubs3rJ80ahw41gO8631kIIh: { name: "video-briefing-set.zip", path: "video-briefing-set.zip", amount: 1200 },
+  // Firmenvideo-Pilot (390 €): Dienstleistung, niemals eine Datei.
+  plink_1Ubs3sJ80ahw41gOTuIcW9vP: { service: true, amount: 39000 },
 };
 
 const BUCKET = "shop-downloads";
@@ -24,14 +27,14 @@ function json(status: number, body: Record<string, unknown>) {
 }
 
 Deno.serve(async (req) => {
-  if (req.method === "OPTIONS") return json(204, {});
-  const secret = Deno.env.get("STRIPE_SECRET_KEY");
-  if (!secret) return json(503, { message: "Lieferung ist noch nicht eingerichtet." });
-
+  if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: { "access-control-allow-origin": "https://blazeridge.de", "access-control-allow-headers": "authorization, apikey, content-type" } });
   const sessionId = new URL(req.url).searchParams.get("session_id") || "";
   if (!/^cs_(test|live)_[A-Za-z0-9]+$/.test(sessionId)) {
     return json(400, { message: "Die Sitzungsnummer fehlt oder ist ungültig." });
   }
+
+  const secret = Deno.env.get("STRIPE_SECRET_KEY");
+  if (!secret) return json(503, { message: "Lieferung ist noch nicht eingerichtet." });
 
   const stripe = await fetch("https://api.stripe.com/v1/checkout/sessions/" + sessionId, {
     headers: { Authorization: "Bearer " + secret },
@@ -42,10 +45,13 @@ Deno.serve(async (req) => {
     return json(402, { message: "Diese Zahlung ist nicht abgeschlossen." });
   }
 
-  const item = FILES[session.amount_total as number];
-  if (!item) return json(404, { message: "Zu diesem Betrag gibt es keine Datei." });
+  const item = typeof session.payment_link === "string" ? FILES[session.payment_link] : undefined;
+  if (!item) return json(404, { message: "Zu diesem Kauf gibt es keine Datei." });
   if ("service" in item) {
     return json(200, { message: "Firmenvideo-Pilot: kein Download. Wir melden uns per E-Mail." });
+  }
+  if (session.amount_total !== item.amount) {
+    return json(402, { message: "Der bezahlte Betrag passt nicht zum Produkt." });
   }
 
   const base = Deno.env.get("SUPABASE_URL");
