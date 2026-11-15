@@ -184,6 +184,15 @@
     .fmt:nth-child(4) { border-top: 1px solid var(--line); }
     .fmt:nth-child(3)::before { left: 0; }
   }
+  @media (max-width: 1100px) {
+    .pill { gap: 2px; padding: 4px; }
+    .pill a { padding: 8px 9px; font-size: 12.5px; }
+  }
+  @media (max-width: 860px) {
+    .brand { font-size: 16px; letter-spacing: 0.08em; gap: 8px; }
+    .nav .btn { padding: 0 12px; }
+    .pill a { padding: 8px 7px; }
+  }
   @media (max-width: 760px) {
     .pill a:not([data-auth-nav]) { display: none; }
     .hero { padding-top: 120px; }

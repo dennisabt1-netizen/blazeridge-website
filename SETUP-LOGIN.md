@@ -71,6 +71,6 @@ In `datenschutz.html`, Abschnitt 5, stehen drei gelb markierte Stellen `[FEHLT: 
 1. `registrieren.html` öffnen, Konto anlegen, Häkchen bei der Datenschutzerklärung setzen.
 2. Mail bestätigen, auf `login.html` anmelden. Die Navigation zeigt dann **Konto**.
 3. `konto.html`: E-Mail sichtbar, **Abmelden** führt zurück zum Login.
-4. **Passwort vergessen** auf `passwort.html`. Der Link in der Mail landet auf `konto.html` und fragt nach einem neuen Passwort.
+4. **Passwort vergessen** auf `passwort.html`. Den Link in derselben Browser-Sitzung öffnen, in der du ihn angefordert hast. Er landet auf `konto.html` und fragt nach einem neuen Passwort. Ein abgelaufener Link oder ein anderer Browser sagt das auf der Kontoseite, statt nur „nicht angemeldet“ zu zeigen.
 
 Ohne die zwei Werte bleibt überall der Hinweis „Login bald verfügbar“. Das ist der gewünschte Zustand bis zu diesem Setup.

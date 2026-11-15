@@ -9,12 +9,27 @@
   var noticeText = notice && notice.querySelector("[data-notice-text]");
   var loading = document.querySelector("[data-auth-loading]");
 
-  function showNotice(title, text, alert) {
+  function showNotice(title, text, alert, withResetLink) {
     if (!notice) return;
     notice.hidden = false;
     notice.setAttribute("role", alert ? "alert" : "status");
     if (noticeTitle) noticeTitle.textContent = title;
     if (noticeText) noticeText.textContent = text;
+    var extra = notice.querySelector("[data-notice-link]");
+    if (withResetLink) {
+      if (!extra) {
+        extra = document.createElement("p");
+        extra.setAttribute("data-notice-link", "");
+        var link = document.createElement("a");
+        link.href = "passwort.html";
+        link.textContent = "Neuen Link anfordern";
+        extra.appendChild(link);
+        notice.appendChild(extra);
+      }
+      extra.hidden = false;
+    } else if (extra) {
+      extra.hidden = true;
+    }
   }
 
   function setForms(disabled) {
@@ -60,6 +75,32 @@
     if (el) el.setAttribute("aria-invalid", "true");
   }
 
+  var handlersReady = false;
+  document.addEventListener("submit", function (e) {
+    var form = e.target;
+    if (!form || !form.getAttribute || !form.getAttribute("data-auth-form")) return;
+    if (!handlersReady) e.preventDefault();
+  }, true);
+
+  var callback = (function () {
+    var query = new URLSearchParams(location.search);
+    var hash = new URLSearchParams((location.hash || "").replace(/^#/, ""));
+    var stored = "";
+    var remembered = false;
+    try {
+      stored = localStorage.getItem("blazeridge-auth-code-verifier") || "";
+      remembered = sessionStorage.getItem("blazeridge-recovery") === "1";
+    } catch (err) {}
+    return {
+      code: query.get("code") || "",
+      type: query.get("type") || hash.get("type") || "",
+      error: query.get("error") || hash.get("error") || "",
+      errorDescription: query.get("error_description") || hash.get("error_description") || "",
+      verifierSaysRecovery: (stored.split("/").pop() === "recovery"),
+      remembered: remembered
+    };
+  })();
+
   var status = auth.readConfig();
   if (!status.configured) {
     if (status.reason === "secret") {
@@ -76,14 +117,10 @@
   }
 
   if (notice) notice.hidden = true;
-  setForms(false);
   if (loading) loading.hidden = false;
 
   auth.client().then(function (supabase) {
-    var recovery = false;
-    var hash = new URLSearchParams((location.hash || "").replace(/^#/, ""));
-    var query = new URLSearchParams(location.search);
-    if (hash.get("type") === "recovery" || query.get("type") === "recovery") recovery = true;
+    var recovery = callback.type === "recovery" || callback.remembered || (callback.code && callback.verifierSaysRecovery);
 
     function fillAccount(session) {
       var panel = document.querySelector('[data-panel="account"]');
@@ -121,7 +158,10 @@
 
     supabase.auth.onAuthStateChange(function (event, session) {
       auth.paintNav(!!(session && session.user));
-      if (event === "PASSWORD_RECOVERY") recovery = true;
+      if (event === "PASSWORD_RECOVERY") {
+        recovery = true;
+        try { sessionStorage.setItem("blazeridge-recovery", "1"); } catch (err) {}
+      }
       renderAccount(session);
     });
 
@@ -274,6 +314,7 @@
             return;
           }
           recovery = false;
+          try { sessionStorage.removeItem("blazeridge-recovery"); } catch (err) {}
           recoveryForm.reset();
           msg(recoveryForm, "ok", "Dein neues Passwort ist gespeichert.");
         }).catch(function () {
@@ -283,18 +324,37 @@
       });
     }
 
+    handlersReady = true;
+    setForms(false);
+    if (loading && page !== "account") loading.hidden = true;
+
     supabase.auth.getSession().then(function (result) {
       if (loading) loading.hidden = true;
       var session = result && result.data && result.data.session;
       auth.paintNav(!!(session && session.user));
       if (page === "account") {
-        if (location.search || location.hash) history.replaceState({}, "", location.pathname);
-        if (result.error) showNotice("Anmeldung gerade nicht erreichbar", "Die Sitzung konnte nicht gelesen werden. Bitte lade die Seite neu.", true);
+        if (callback.error || callback.errorDescription) {
+          showNotice("Link ungültig", "Der Link ist abgelaufen oder wurde schon benutzt. Fordere einen neuen an.", true, true);
+        } else if (callback.code && !(session && session.user)) {
+          showNotice("Link ungültig", "Der Link funktioniert nur in dem Browser, in dem du ihn angefordert hast, oder er ist abgelaufen. Fordere einen neuen an.", true, true);
+        } else if (result.error) {
+          showNotice("Anmeldung gerade nicht erreichbar", "Die Sitzung konnte nicht gelesen werden. Bitte lade die Seite neu.", true);
+        }
         renderAccount(session);
+        if (callback.code || callback.error || callback.errorDescription || callback.type || location.hash.indexOf("access_token") !== -1) {
+          history.replaceState({}, "", location.pathname);
+        }
       }
     }).catch(function () {
       if (loading) loading.hidden = true;
-      if (page === "account") showNotice("Anmeldung gerade nicht erreichbar", "Die Sitzung konnte nicht gelesen werden. Bitte lade die Seite neu.", true);
+      if (page === "account") {
+        if (callback.code || callback.error || callback.errorDescription) {
+          showNotice("Link ungültig", "Der Link funktioniert nur in dem Browser, in dem du ihn angefordert hast, oder er ist abgelaufen. Fordere einen neuen an.", true, true);
+          history.replaceState({}, "", location.pathname);
+        } else {
+          showNotice("Anmeldung gerade nicht erreichbar", "Die Sitzung konnte nicht gelesen werden. Bitte lade die Seite neu.", true);
+        }
+      }
     });
   }).catch(function () {
     if (loading) loading.hidden = true;
