@@ -184,8 +184,17 @@
     .fmt:nth-child(4) { border-top: 1px solid var(--line); }
     .fmt:nth-child(3)::before { left: 0; }
   }
+  @media (max-width: 1100px) {
+    .pill { gap: 2px; padding: 4px; }
+    .pill a { padding: 8px 9px; font-size: 12.5px; }
+  }
+  @media (max-width: 860px) {
+    .brand { font-size: 16px; letter-spacing: 0.08em; gap: 8px; }
+    .nav .btn { padding: 0 12px; }
+    .pill a { padding: 8px 7px; }
+  }
   @media (max-width: 760px) {
-    .pill { display: none; }
+    .pill a:not([data-auth-nav]) { display: none; }
     .hero { padding-top: 120px; }
     .hero-copy { max-width: none; }
     .hero::before { background: linear-gradient(180deg, rgba(7,6,10,0.55) 0%, rgba(7,6,10,0.35) 25%, rgba(7,6,10,0.85) 50%, var(--bg) 78%); }
@@ -237,6 +246,7 @@
     <a href="#tauchgang">Tauchgang</a>
     <a href="#serien">Serien</a>
     <a href="#tipps">Smart-Home-Tipps</a>
+    <a href="login.html" data-auth-nav>Login</a>
   </nav>
   <a class="btn btn-primary" href="https://www.tiktok.com/@blazeridge" target="_blank" rel="noopener">Folgen
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
@@ -532,5 +542,7 @@
   if (location.search.includes('static')) document.querySelectorAll('.reveal').forEach((el) => el.classList.add('on'));
   document.querySelectorAll('.reveal').forEach((el, n) => { el.style.transitionDelay = (n % 5) * 70 + 'ms'; io.observe(el); });
 </script>
+<script src="js/auth-config.js"></script>
+<script src="js/auth.js"></script>
 </body>
 </html>
