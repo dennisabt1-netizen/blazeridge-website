@@ -1,0 +1,13 @@
+project_id = "blazeridge-website"
+
+[functions.deliver]
+verify_jwt = false
+
+[functions.shop-withdrawal]
+verify_jwt = false
+
+[functions.shop-orders]
+verify_jwt = false
+
+[functions.shop-retry-receipts]
+verify_jwt = false

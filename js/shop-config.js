@@ -7,5 +7,6 @@
  * https://ubykffpdqvlhuijofmcu.supabase.co/functions/v1/deliver
  * ========================================================================== */
 window.BLAZERIDGE_SHOP = {
-  deliverUrl: "https://ubykffpdqvlhuijofmcu.supabase.co/functions/v1/deliver"
+  deliverUrl: "https://ubykffpdqvlhuijofmcu.supabase.co/functions/v1/deliver",
+  withdrawalUrl: "https://ubykffpdqvlhuijofmcu.supabase.co/functions/v1/shop-withdrawal"
 };
