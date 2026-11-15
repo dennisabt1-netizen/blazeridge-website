@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vertrag widerrufen – BlazeRidge</title>
+<style>
+  body { margin: 0; background: #0a090e; color: #f6f2f7; font: 1rem/1.6 system-ui, sans-serif; }
+  main { max-width: 39rem; margin: auto; padding: 2rem 1rem; }
+  a { color: #ff9c5c; }
+  label, input, textarea { display: block; }
+  input, textarea, button { box-sizing: border-box; font: inherit; padding: .6rem; }
+  input, textarea { width: 100%; margin: .2rem 0 1rem; }
+  button { cursor: pointer; }
+  button:focus-visible, a:focus-visible { outline: 3px solid #ff9c5c; outline-offset: 4px; }
+  pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+</style>
+<script defer src="js/shop-config.js"></script>
+<script defer src="js/withdrawal.js"></script>
+</head>
+<body>
+<main>
+  <a href="shop.html">Zurück zum Shop</a>
+  <h1>Vertrag widerrufen</h1>
+  <p>Hier können Sie Ihren Vertrag oder einen Teil des Vertrags widerrufen.</p>
+  <noscript><p>Für das Online-Formular ist JavaScript erforderlich. Sie können Ihren Widerruf auch per <a href="mailto:einkaufnow@outlook.de">E-Mail</a> erklären.</p></noscript>
+  <form id="withdrawal-form" method="post">
+    <label for="name">Vor- und Nachname</label>
+    <input id="name" name="name" required maxlength="120" autocomplete="name">
+    <label for="order">Vertrag oder Vertragsteil</label>
+    <input id="order" name="order" required maxlength="750" aria-describedby="order-hint">
+    <p id="order-hint">Geben Sie z. B. die Bestellreferenz oder Produkt und Bestelldatum an. Nennen Sie keine Zahlungsdaten.</p>
+    <label for="email">E-Mail-Adresse für die Eingangsbestätigung</label>
+    <input id="email" name="email" type="email" required maxlength="254" autocomplete="email">
+    <button type="submit" disabled>Weiter zur Bestätigung</button>
+  </form>
+  <section id="withdrawal-review" hidden aria-labelledby="review-title">
+    <h2 id="review-title" tabindex="-1">Widerruf prüfen</h2>
+    <pre id="withdrawal-summary"></pre>
+    <button id="withdrawal-confirm" type="button">Widerruf bestätigen</button>
+    <button id="withdrawal-edit" type="button">Angaben ändern</button>
+  </section>
+  <p id="withdrawal-status" role="status" aria-live="polite"></p>
+  <p><a href="widerrufsbelehrung.html">Widerrufsbelehrung</a> · <a href="datenschutz.html">Datenschutz</a></p>
+</main>
+</body>
+</html>

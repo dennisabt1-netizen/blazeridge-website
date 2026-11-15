@@ -1,17 +1,4 @@
-// Deploy with: supabase functions deploy deliver --project-ref ubykffpdqvlhuijofmcu
-// Secret (do not commit): supabase secrets set STRIPE_SECRET_KEY=sk_live_...
-// The key only needs Checkout Session read access. Never put it in the website.
-
-// Mapping by Stripe Payment Link id; the amount must match as a second check.
-type Item = { name: string; path: string; amount: number } | { service: true; amount: number };
-const FILES: Record<string, Item> = {
-  plink_1Ubs3oJ80ahw41gOkrK4Aab9: { name: "starter.zip", path: "starter.zip", amount: 700 },
-  plink_1Ubs3pJ80ahw41gOYGybJRUC: { name: "producer.zip", path: "producer.zip", amount: 1900 },
-  plink_1Ubs3qJ80ahw41gOkjdxV43Z: { name: "studio.zip", path: "studio.zip", amount: 3900 },
-  plink_1Ubs3rJ80ahw41gO8631kIIh: { name: "video-briefing-set.zip", path: "video-briefing-set.zip", amount: 1200 },
-  // Firmenvideo-Pilot (390 €): Dienstleistung, niemals eine Datei.
-  plink_1Ubs3sJ80ahw41gOTuIcW9vP: { service: true, amount: 39000 },
-};
+import { confirmOrder, paidProduct, retrieveSession } from "../_shared/orders.ts";
 
 const BUCKET = "shop-downloads";
 
@@ -21,6 +8,7 @@ function json(status: number, body: Record<string, unknown>) {
     headers: {
       "content-type": "application/json; charset=utf-8",
       "access-control-allow-origin": "https://blazeridge.de",
+      "cache-control": "no-store",
       "access-control-allow-headers": "authorization, apikey, content-type",
     },
   });
@@ -33,32 +21,28 @@ Deno.serve(async (req) => {
     return json(400, { message: "Die Sitzungsnummer fehlt oder ist ungültig." });
   }
 
-  const secret = Deno.env.get("STRIPE_SECRET_KEY");
-  if (!secret) return json(503, { message: "Lieferung ist noch nicht eingerichtet." });
-
-  const stripe = await fetch("https://api.stripe.com/v1/checkout/sessions/" + sessionId, {
-    headers: { Authorization: "Bearer " + secret },
-  });
-  if (!stripe.ok) return json(402, { message: "Stripe erkennt diese Zahlung nicht." });
-  const session = await stripe.json();
-  if (session.payment_status !== "paid" || session.currency !== "eur") {
-    return json(402, { message: "Diese Zahlung ist nicht abgeschlossen." });
-  }
-
-  const item = typeof session.payment_link === "string" ? FILES[session.payment_link] : undefined;
-  if (!item) return json(404, { message: "Zu diesem Kauf gibt es keine Datei." });
-  if ("service" in item) {
-    return json(200, { message: "Firmenvideo-Pilot: kein Download. Fragen an einkaufnow@outlook.de." });
-  }
-  if (session.amount_total !== item.amount) {
-    return json(402, { message: "Der bezahlte Betrag passt nicht zum Produkt." });
+  if (req.method !== "GET") return json(405, { message: "Methode nicht unterstützt." });
+  let item;
+  try {
+    const session = await retrieveSession(sessionId);
+    if (!session || session.payment_status !== "paid" || session.currency !== "eur") {
+      return json(402, { message: "Diese Zahlung ist nicht abgeschlossen." });
+    }
+    if (session.payment_link === "plink_1Ubs3sJ80ahw41gOTuIcW9vP" && session.amount_total === 39000) {
+      return json(200, { message: "Firmenvideo-Pilot: kein Download. Fragen an einkaufnow@outlook.de." });
+    }
+    item = paidProduct(session);
+    if (!item) return json(404, { message: "Zu diesem Kauf gibt es keine Datei." });
+    await confirmOrder(session);
+  } catch {
+    return json(503, { message: "Der Download ist noch nicht verfügbar. Versuchen Sie es erneut oder kontaktieren Sie BlazeRidge." });
   }
 
   const base = Deno.env.get("SUPABASE_URL");
   const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
   if (!base || !serviceKey) return json(503, { message: "Speicher ist noch nicht verbunden." });
 
-  const sign = await fetch(base + "/storage/v1/object/sign/" + BUCKET + "/" + item.path, {
+  const sign = await fetch(base + "/storage/v1/object/sign/" + BUCKET + "/" + item.name, {
     method: "POST",
     headers: {
       Authorization: "Bearer " + serviceKey,
