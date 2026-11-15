@@ -11,6 +11,6 @@
  * den Hinweis „Login bald verfügbar“ und senden keine Daten.
  * ========================================================================== */
 window.BLAZERIDGE_AUTH = {
-  supabaseUrl: "https://DEIN-PROJEKT.supabase.co",
-  supabaseAnonKey: "DEIN-ANON-KEY"
+  supabaseUrl: "https://ubykffpdqvlhuijofmcu.supabase.co",
+  supabaseAnonKey: "sb_publishable_NRl5gjF4OglGrS08oY2fHQ_t0iiRXud"
 };
