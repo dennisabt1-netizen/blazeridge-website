@@ -60,11 +60,7 @@ Unter **Authentication**:
 
 ## Datenschutz-Seite
 
-In `datenschutz.html`, Abschnitt 5, stehen drei gelb markierte Stellen `[FEHLT: …]`. Nach dem Anlegen des Projekts in Frankfurt so ersetzen:
-
-- Serverregion: `eu-central-1 (Frankfurt, Deutschland, EU)`.
-- Drittland-Satz: bestätigen, dass das Projekt in dieser Region liegt, und den `[FEHLT]`-Hinweis entfernen. Der Hinweis auf Singapur und die USA (Sitz von Supabase und mögliche Unterauftragsverarbeiter, Standardvertragsklauseln) bleibt.
-- Speicherdauer der Auth-Protokolle: im Dashboard nachsehen. Die öffentliche Preisliste nennt für den Free-Plan derzeit etwa 24 Stunden „Auth Audit Logs“. Nur eintragen, was du dort siehst.
+In `datenschutz.html`, Abschnitt 5, sind Region, Drittland und Speicherdauer eingetragen: AWS eu-central-1 (Frankfurt, Deutschland, EU). Der Hinweis auf Singapur und die USA bleibt. Die Preisliste nennt für den Free-Plan etwa 24 Stunden Auth Audit Logs und einen Tag API- und Datenbank-Logs.
 
 ## Kurz testen
 
