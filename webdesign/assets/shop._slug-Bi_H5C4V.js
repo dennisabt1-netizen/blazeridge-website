@@ -1,0 +1,1 @@
+import{s as e,t}from"./link-C9Z9Tb6I.js";var n=e(),r=()=>(0,n.jsxs)(`div`,{className:`mx-auto max-w-[1440px] px-5 py-24 md:px-10`,children:[(0,n.jsx)(`h1`,{className:`display text-7xl`,children:`Paket nicht gefunden`}),(0,n.jsx)(t,{to:`/shop`,className:`btn btn-lava mt-6`,children:`Zu den Webdesign-Paketen`})]});export{r as notFoundComponent};
