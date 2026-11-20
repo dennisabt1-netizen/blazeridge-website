@@ -2,6 +2,7 @@
 .shop-main { width: min(1120px, 100%); }
 .sku-grid { margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .sku { padding: 24px 22px 26px; border-radius: 22px; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015)); display: flex; flex-direction: column; min-height: 280px; }
+.sku h2.sku-keep { white-space: nowrap; }
 .sku h2 { margin-top: 8px; font-family: Anton, Impact, sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(28px, 3vw, 36px); line-height: 0.95; }
 .sku .kicker { color: var(--accent); font-size: 12px; letter-spacing: 0.22em; }
 .sku .price { margin-top: 10px; font-family: Anton, Impact, sans-serif; font-size: 28px; letter-spacing: 0.02em; color: var(--ink); }
