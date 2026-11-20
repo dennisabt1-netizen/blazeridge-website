@@ -3,16 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0a090e">
+<meta name="theme-color" content="#07060A">
 <meta name="description" content="BlazeRidge Gratis-Muster: Ausgefülltes Beispiel für ein 30-sekündiges Wissens-Kurzvideo zum Thema Echo.">
 <title>Warum gibt es ein Echo? — BlazeRidge Gratis-Muster</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307060A'/%3E%3Cpath d='M18 46 32 14l14 32' stroke='%23FF6A1A' stroke-width='7' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link href="../media/fonts/fonts.css" rel="stylesheet">
+<link href="../auth.css" rel="stylesheet">
+<link href="../site-bg.css" rel="stylesheet">
 <style>
 :root {
-  --bg: #0a090e;
+  --bg: #07060A;
   --panel: #121017;
-  --text: #f7f5f2;
+  --text: #F6F2F7;
   --muted: #b8b2bd;
-  --orange: #ff6a00;
+  --orange: #FF6A1A;
   --line: #312c37;
   --max: 1180px;
 }
@@ -23,7 +27,7 @@ body {
   padding: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: Inter, system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
@@ -143,9 +147,9 @@ button { cursor: pointer; }
   gap: 24px;
   border-bottom: 1px solid var(--line);
 }
-.nav { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 0; padding: 0; list-style: none; }
-.nav a { color: var(--muted); font-size: 0.78rem; text-decoration: none; }
-.nav a:hover { color: var(--orange); }
+.doc-nav { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 0; padding: 0; list-style: none; }
+.doc-nav a { color: var(--muted); font-size: 0.78rem; text-decoration: none; }
+.doc-nav a:hover { color: var(--orange); }
 main { max-width: var(--max); margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
 .section { padding: clamp(64px, 9vw, 112px) 0; border-bottom: 1px solid var(--line); }
 .section-heading { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 20px; margin-bottom: 46px; }
@@ -204,6 +208,7 @@ tbody tr:first-child td { border-top: 0; }
 .source:last-child { border-bottom: 1px solid var(--line); }
 .source-number { color: var(--orange); font-weight: 900; }
 .source h3 { margin-bottom: 8px; font-size: 1.08rem; }
+.source-url { margin: 0 0 8px; color: var(--muted); font-size: 0.78rem; line-height: 1.4; overflow-wrap: anywhere; }
 .source p { max-width: 72ch; margin: 0; color: var(--muted); }
 .source a { overflow-wrap: anywhere; }
 .checklist { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 36px; margin: 0; padding: 0; list-style: none; }
@@ -279,7 +284,7 @@ tbody tr:first-child td { border-top: 0; }
 @page {
   size: A4;
   margin: 18mm 16mm;
-  background: #0a090e;
+  background: #07060A;
   @top-left {
     content: "BLAZERIDGE · GRATIS-MUSTER";
     color: #b8b2bd;
@@ -290,7 +295,7 @@ tbody tr:first-child td { border-top: 0; }
   }
   @bottom-right {
     content: counter(page);
-    color: #ff6a00;
+    color: #FF6A1A;
     font-family: ui-sans-serif, system-ui, sans-serif;
     font-size: 8pt;
   }
@@ -303,14 +308,14 @@ tbody tr:first-child td { border-top: 0; }
 @page cover {
   size: A4;
   margin: 0;
-  background: #0a090e;
+  background: #07060A;
   @top-left { content: none; }
   @bottom-right { content: none; }
 }
 @page quer {
   size: 297mm 210mm;
   margin: 13mm 12mm 14mm;
-  background: #0a090e;
+  background: #07060A;
   @top-left {
     content: "BLAZERIDGE · GRATIS-MUSTER";
     color: #b8b2bd;
@@ -321,14 +326,14 @@ tbody tr:first-child td { border-top: 0; }
   }
   @bottom-right {
     content: counter(page);
-    color: #ff6a00;
+    color: #FF6A1A;
     font-family: ui-sans-serif, system-ui, sans-serif;
     font-size: 8pt;
   }
 }
 @media print {
   html { scroll-behavior: auto; }
-  body { margin: 0; padding: 0; background: #0a090e; font-size: 10pt; }
+  body { margin: 0; padding: 0; background: #07060A; font-size: 10pt; }
   .skip-link, .screen-only, .toolbar, .print-button { display: none !important; }
   .cover {
     width: 210mm;
@@ -406,7 +411,7 @@ tbody tr:first-child td { border-top: 0; }
   p { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
   a { color: inherit; text-decoration: none; }
-  .shop-link, .source a { color: #ff6a00; }
+  .shop-link, .source a { color: #FF6A1A; }
   #hooks, #bildprompts, #quellen { page-break-before: auto; }
   .hook, .prompt, .source {
     display: table;
@@ -429,15 +434,42 @@ tbody tr:first-child td { border-top: 0; }
   .source h3, .source p { display: block; }
   h2 { page-break-after: avoid; }
   h3 { page-break-after: auto; }
+  .home-stage, .site-header, .site-footer, .pdf-link { display: none !important; }
+}
+body.has-home-bg { background: transparent; }
+.site-header.nav { position: sticky; }
+.cover { padding-top: 120px; }
+.pdf-link { margin-left: 12px; }
+@media (max-width: 760px) {
+  .cover { padding-top: 108px; }
 }
 </style>
 </head>
-<body>
+<body class="has-home-bg">
+<div class="home-stage" aria-hidden="true"><div class="glow"></div><div class="film"></div><div class="shade"></div><div class="grain"></div></div>
+<header class="nav site-header">
+  <a class="brand" href="../" aria-label="BlazeRidge Startseite">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 50 32 12l18 38" stroke="#FF6A1A" stroke-width="7" fill="none" stroke-linejoin="round"/><path d="M24 50h16" stroke="#F6F2F7" stroke-width="6"/></svg>
+    BlazeRidge
+  </a>
+  <nav class="pill" aria-label="Bereiche">
+    <a href="../#videos">Videos</a>
+    <a href="../#tauchgang">Tauchgang</a>
+    <a href="../#serien">Serien</a>
+    <a href="../#tipps">Smart-Home-Tipps</a>
+    <a href="../shop.html" data-shop-nav>Shop</a>
+    <a href="../webdesign/">Webdesign</a>
+    <a href="../login.html" data-auth-nav>Login</a>
+  </nav>
+  <a class="btn btn-primary" href="https://www.tiktok.com/@blazeridge" target="_blank" rel="noopener">Folgen
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+  </a>
+</header>
 <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
 <header class="cover" id="deckblatt">
   <div class="cover-top">
     <p class="wordmark">Blaze<span>Ridge</span></p>
-    <span class="edition">Gratis-Muster · Wissen in 30 Sekunden</span>
+    <span class="edition">Gratis&#8209;Muster · Wissen in 30 Sekunden</span>
   </div>
   <div class="cover-grid">
     <div class="cover-main">
@@ -457,7 +489,7 @@ tbody tr:first-child td { border-top: 0; }
   </div>
 </header>
 <div class="toolbar screen-only" aria-label="Dokumentnavigation">
-  <ul class="nav">
+  <ul class="doc-nav">
     <li><a href="#funktioniert">So funktioniert’s</a></li>
     <li><a href="#voiceover">Voiceover</a></li>
     <li><a href="#szenenplan">Szenenplan</a></li>
@@ -467,7 +499,7 @@ tbody tr:first-child td { border-top: 0; }
     <li><a href="#checkliste">Checkliste</a></li>
     <li><a href="#caption">Caption</a></li>
   </ul>
-  <a class="print-button" href="warum-gibt-es-ein-echo.pdf" download>PDF herunterladen</a>
+  <a class="print-button pdf-link" href="BlazeRidge_Gratis-Muster_Echo.pdf" download>Als PDF herunterladen</a>
 </div>
 <main id="inhalt">
 <section class="section" id="funktioniert" aria-labelledby="titel-funktioniert">
@@ -475,7 +507,7 @@ tbody tr:first-child td { border-top: 0; }
     <p class="section-number">02 / 10</p>
     <div>
       <p class="kicker">Einstieg → Szene → Beleg</p>
-      <h2 id="titel-funktioniert">So funktioniert's</h2>
+      <h2 id="titel-funktioniert">So funktioniert’s</h2>
     </div>
   </div>
   <div class="steps">
@@ -549,7 +581,7 @@ tbody tr:first-child td { border-top: 0; }
           <td class="scene-time" data-label="Zeit">0:15–0:20</td>
           <td data-label="Voiceover-Text">Bei 17 Metern Wandabstand braucht der Schall hin und zurück rund eine Zehntelsekunde.</td>
           <td data-label="Was ist zu sehen">Quelle und Wand bleiben gleichzeitig sichtbar. Zwei gegenläufige Lichtspuren markieren den Hin- und Rückweg und verbinden sich zu einem vollständigen Weg.</td>
-          <td class="overlay-text" data-label="Texteinblendung">17 m zur Wand · 34 m Schallweg · ≈ 0,1 s</td>
+          <td class="overlay-text" data-label="Texteinblendung">17 m ≈ 0,1 s</td>
           <td data-label="Ton/SFX">Zwei kurze Ticks für Hin- und Rückweg; dezenter Spannungsaufbau.</td>
           <td data-label="Zweck">Wandabstand, Gesamtweg und Laufzeit verknüpfen.</td>
         </tr>
@@ -650,6 +682,7 @@ tbody tr:first-child td { border-top: 0; }
       <span class="source-number">01</span>
       <div>
         <h3><a href="https://openstax.org/books/college-physics-ap-courses-2e/pages/17-2-speed-of-sound-frequency-and-wavelength" target="_blank" rel="noopener noreferrer">OpenStax: Speed of Sound, Frequency, and Wavelength</a></h3>
+        <p class="source-url">https://openstax.org/books/college-physics-ap-courses-2e/pages/17-2-speed-of-sound-frequency-and-wavelength</p>
         <p>Belegt die Schallgeschwindigkeit von 343 m/s bei 20 °C sowie den Zusammenhang zwischen Geschwindigkeit, Weg und Zeit.</p>
       </div>
     </article>
@@ -657,6 +690,7 @@ tbody tr:first-child td { border-top: 0; }
       <span class="source-number">02</span>
       <div>
         <h3><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2677267/" target="_blank" rel="noopener noreferrer">Predicting echo thresholds from speech onset characteristics</a></h3>
+        <p class="source-url">https://pmc.ncbi.nlm.nih.gov/articles/PMC2677267/</p>
         <p>Zeigt, warum die Wahrnehmung eines getrennten Echos vom Geräusch abhängt. Die berechneten 0,1 Sekunden gelten für das Beispiel.</p>
       </div>
     </article>
@@ -702,6 +736,10 @@ tbody tr:first-child td { border-top: 0; }
   <a class="shop-link" href="../shop.html">blazeridge.de/shop.html</a>
 </section>
 </main>
+<footer class="site-footer">
+  <span>© 2026 BlazeRidge</span>
+  <span>Videos mit KI-Bildern + KI-Stimme · Werbung ist als #Werbung gekennzeichnet · <a href="../impressum.html">Impressum</a> · <a href="../agb.html">AGB</a> · <a href="../widerrufsbelehrung.html">Widerruf</a> · <a href="../datenschutz.html">Datenschutz</a></span>
+</footer>
 <script>
 document.querySelectorAll("[data-print]").forEach(function (button) {
   button.addEventListener("click", function () { window.print(); });
