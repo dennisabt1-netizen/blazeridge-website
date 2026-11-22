@@ -1,0 +1,17 @@
+{
+  "brand": "Aqualis",
+  "tagline": "Die smarte Trinkflasche, die mitzählt.",
+  "description": "Aqualis ist eine smarte Trinkflasche mit App: Schlucke zählen, Tagesziel setzen, Erinnerungen bekommen.",
+  "nav": ["Funktionen", "Zahlen", "Kontakt"],
+  "hero": {"title": "Trinken, ganz ohne Nachdenken.", "highlight": "ohne Nachdenken", "subtitle": "Aqualis zählt jeden Schluck, erinnert dich sanft und zeigt dir in der App, wie gut du heute versorgt bist.", "cta": {"label": "Vorbestellen", "href": "#kontakt"}},
+  "app": {"name": "Aqualis", "chart_label": "Heute getrunken", "action": "Ziel ansehen", "metrics": [{"value": "1,6", "label": "Liter heute"}, {"value": "12", "label": "Schlucke/Std"}, {"value": "82", "label": "% Ziel"}]},
+  "about": {"heading": "Wir wollten, dass Trinken so einfach wird wie Atmen. Eine Flasche, eine App, kein Aufwand."},
+  "items": [
+    {"title": "Smarte Kontrolle", "text": "Sensor im Deckel misst jede Menge. Die App rechnet dein Tagesziel aus Gewicht und Aktivität.", "metric": "1,6 l", "tag": "Sensor"},
+    {"title": "Sanfte Erinnerung", "text": "Der Deckel leuchtet kurz, wenn du zu lange nichts getrunken hast. Keine nervigen Pushs.", "metric": "45′", "tag": "Licht"},
+    {"title": "Woche im Blick", "text": "Muster erkennen: An Sporttagen mehr, im Büro weniger. Alles lokal auf deinem Handy.", "metric": "7 T", "tag": "Statistik"}
+  ],
+  "stats": [{"value": "14", "label": "Tage Akku"}, {"value": "750", "label": "ml Edelstahl"}, {"value": "0", "label": "Abo-Kosten"}],
+  "contact": {"heading": "Bereit für mehr Wasser?", "email": "hallo@aqualis.example", "links": [{"label": "Instagram", "href": "#"}, {"label": "Presse", "href": "#"}]},
+  "footer": "© 2026 Aqualis · Testseite (fiktive Marke)"
+}

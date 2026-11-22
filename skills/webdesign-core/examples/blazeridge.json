@@ -1,0 +1,24 @@
+{
+  "brand": "BlazeRidge",
+  "tagline": "Was wäre, wenn …? Kurzvideos über Körper, Überleben und KI.",
+  "description": "BlazeRidge macht kurze Wissensvideos auf Deutsch: Was passiert mit deinem Körper, wie überlebst du, was träumt eine KI?",
+  "lang": "de",
+  "nav": ["Videos", "Studio", "Kontakt"],
+  "hero": {"title": "BlazeRidge", "subtitle": "Kurze Videos über deinen Körper, Überleben und KI-Geschichten. Teils mit KI erstellt.", "cta": {"label": "Zu TikTok", "href": "https://www.tiktok.com/@blazeridge"}},
+  "about": {"kicker": "Studio", "heading": "Wir stellen die Frage, die du dich nicht traust zu googeln – und beantworten sie in 30 Sekunden.", "text": "Jedes Video startet mit einem Was-wäre-wenn. Dann Fakten, Animation und eine KI-Stimme. Ohne erfundene Zahlen."},
+  "marquee": ["Was wäre, wenn …?", "✦", "24 h ohne Schlaf", "✦", "3 Tage ohne Wasser", "✦", "KI träumt", "✦"],
+  "items": [
+    {"title": "24 h wach", "tag": "Körper", "text": "Was passiert mit deinem Gehirn, wenn du eine Nacht durchmachst?"},
+    {"title": "Handy im Bett", "tag": "Schlaf", "text": "Blaulicht, Melatonin und warum 30 Minuten Pause helfen."},
+    {"title": "Ohne Wasser", "tag": "Überleben", "text": "Tag 1, Tag 2, Tag 3 – was dein Körper durchmacht."},
+    {"title": "KI träumt", "tag": "Fiktion", "text": "LUMA sortiert nachts den Tag. Eine erfundene Geschichte."},
+    {"title": "STOP-Regel", "tag": "Outdoor", "text": "Verirrt im Wald? Stehen bleiben, nachdenken, umsehen, planen."}
+  ],
+  "stats": [{"value": "30", "label": "Sekunden pro Video"}, {"value": "4", "label": "Plattformen"}, {"value": "1", "label": "neues Video pro Tag"}],
+  "contact": {"heading": "Reach out", "email": "einkaufnow@outlook.de", "links": [
+    {"label": "TikTok", "href": "https://www.tiktok.com/@blazeridge"},
+    {"label": "Instagram", "href": "https://www.instagram.com/blazeridge.original/"},
+    {"label": "Facebook", "href": "https://www.facebook.com/blazeridge.original"}]},
+  "footer": "© 2026 BlazeRidge",
+  "legal": [{"label": "Impressum", "href": "https://blazeridge.de/impressum.html"}, {"label": "Datenschutz", "href": "https://blazeridge.de/datenschutz.html"}]
+}

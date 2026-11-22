@@ -1,0 +1,23 @@
+{
+  "brand": "Nordlicht Studio",
+  "tagline": "Websites, die man scrollen will.",
+  "description": "Nordlicht Studio gestaltet interaktive Websites mit Scroll-Effekten, 3D und Bewegung.",
+  "hero": {"title": "Nordlicht", "subtitle": "Wir bauen Websites, bei denen jeder Scroll eine kleine Szene ist.", "cta": {"label": "Projekt anfragen", "href": "#kontakt"}},
+  "pinned": {"heading": "Warum Scroll?", "points": ["Weil Bewegung Aufmerksamkeit hält – drei Sekunden länger heißt drei Sätze mehr gelesen.", "Weil eine Geschichte eine Reihenfolge braucht, und Scrollen ist Reihenfolge.", "Weil gute Effekte nicht stören: Sie zeigen, wohin du als Nächstes schauen sollst."]},
+  "showcase_title": "Ideen, zum Leben erweckt.",
+  "about": {"heading": "Wir planen jede Seite wie einen Kurzfilm: Einstieg, Spannung, Auflösung."},
+  "marquee": ["Parallax · Pin · Zoom · Reveal"],
+  "arc_title": "Ausgewählte Projekte",
+  "items": [
+    {"title": "Firnlicht", "text": "Outdoor-Marke mit Parallax-Bergen und Wetter, das sich mit dem Scroll ändert."},
+    {"title": "Kobalt", "text": "Fintech-Landingpage mit gestapelten Karten und Live-Zahlen."},
+    {"title": "Sonnhalde", "text": "Weingut: Lagen als Fokus-Slider, jede Flasche ein eigener Rahmen."},
+    {"title": "Mono", "text": "Typo-Portfolio mit Zeilen, die sich beim Lesen aufbauen."},
+    {"title": "Orbit", "text": "Raumfahrt-Startup: 3D-Modell, das sich mit dem Scroll dreht."},
+    {"title": "Kante", "text": "Architekturbüro mit seitlich laufenden Schlagzeilen."}
+  ],
+  "stats_title": "In Zahlen",
+  "stats": [{"value": "48", "label": "Projekte"}, {"value": "10", "label": "Effekt-Bausteine"}, {"value": "98", "label": "Lighthouse-Score"}, {"value": "0", "label": "Bezahl-Plugins"}],
+  "contact": {"heading": "Lass uns reden", "email": "hallo@nordlicht.example", "links": [{"label": "Instagram", "href": "#"}, {"label": "Dribbble", "href": "#"}]},
+  "footer": "© 2026 Nordlicht Studio · Testseite (fiktiv)"
+}
