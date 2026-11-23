@@ -1,0 +1,26 @@
+{
+  "brand": "M. A. Color & Design",
+  "wordmark": "Color & Design",
+  "monogram": ["M", "A"],
+  "owner": "Mario Abate",
+  "title": "Malermeister",
+  "tagline": "Malermeister in Niederstotzingen",
+  "description": "M. A. Color & Design – Malermeisterbetrieb Mario Abate in Niederstotzingen. Malerarbeiten innen und außen, Fassadenanstrich, dekorative Wandgestaltungen, Bodenbelagsarbeiten.",
+  "lang": "de",
+  "hero": {"subtitle": "Blumenstraße 6 · 89168 Niederstotzingen"},
+  "about": {"heading": "Malermeister aus Niederstotzingen – für Wand, Fassade und Boden.",
+            "text": "Malerarbeiten im Innen- und Außenbereich, Fassadenanstrich, dekorative Wandgestaltungen und Bodenbelagsarbeiten aus einer Hand."},
+  "items": [
+    {"title": "Malerarbeiten innen & außen", "icon": "innen", "text": "Wände, Decken und Flächen im Innen- und Außenbereich."},
+    {"title": "Fassadenanstrich", "icon": "fassade", "text": "Neuer Anstrich für die Außenwand Ihres Hauses."},
+    {"title": "Dekorative Wandgestaltungen", "icon": "deko", "text": "Wände mit Struktur, Technik und Farbe gestalten."},
+    {"title": "Bodenbelagsarbeiten", "icon": "boden", "text": "Verlegen und Erneuern von Bodenbelägen."}
+  ],
+  "contact": {
+    "phone": "0172 7482835",
+    "phone_href": "tel:+491727482835",
+    "address": ["M. A. Color & Design", "Mario Abate · Malermeister", "Blumenstraße 6", "89168 Niederstotzingen"],
+    "maps": "https://www.google.com/maps/search/?api=1&query=Blumenstra%C3%9Fe+6+89168+Niederstotzingen"
+  },
+  "footer": "© M. A. Color & Design · Testseite (Impressum und Datenschutz folgen)"
+}

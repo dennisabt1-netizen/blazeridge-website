@@ -227,6 +227,42 @@
     el.addEventListener('pointerleave', () => gsap.to(el, { rotateX: 0, rotateY: 0, duration: 0.6 }));
   });
 
+  // ---- Paint wall (Maler/Handwerk): [data-paintwall] fixed background; each <g class="pass"> is one roller pass
+  //      (several bristle <path>s). Scroll progress paints the passes one after another; .roller follows the paint head.
+  $$('[data-paintwall]').forEach((wall) => {
+    const passes = $$('g.pass', wall);
+    const roller = wall.querySelector('.roller');
+    const data = passes.map((g) => {
+      const paths = $$('path', g); const L = paths[0].getTotalLength();
+      paths.forEach((p) => { const l = p.getTotalLength(); p.style.strokeDasharray = l; p.style.strokeDashoffset = reduce ? 0 : l; p.__l = l; });
+      return { paths, L };
+    });
+    if (reduce) { if (roller) roller.style.display = 'none'; return; }
+    const paint = (prog) => {
+      const n = data.length, x = prog * n;
+      let head = false;
+      data.forEach((d, i) => {
+        const k = Math.min(1, Math.max(0, x - i));
+        d.paths.forEach((p) => { p.style.strokeDashoffset = p.__l * (1 - k); });
+        if (roller && k > 0 && k < 1) {
+          const pt = d.paths[0].getPointAtLength(d.L * k), pt2 = d.paths[0].getPointAtLength(Math.min(d.L, d.L * k + 2));
+          const a = Math.atan2(pt2.y - pt.y, pt2.x - pt.x) * 180 / Math.PI;
+          roller.setAttribute('transform', `translate(${pt.x} ${pt.y}) rotate(${a})`);
+          head = true;
+        }
+      });
+      if (roller) roller.style.opacity = head ? 1 : 0;
+    };
+    paint(0);
+    ScrollTrigger.create({ trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.6, onUpdate: (s) => paint(s.progress) });
+  });
+  // Brush-swipe reveal: [data-swipe] element is uncovered left->right like a brush stroke
+  $$('[data-swipe]').forEach((el) => {
+    if (reduce) return;
+    gsap.fromTo(el, { clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)' },
+      { clipPath: 'polygon(0 0, 110% 0, 100% 100%, 0 100%)', duration: 1.1, ease: 'power3.inOut', scrollTrigger: { trigger: el, start: 'top 85%' } });
+  });
+
   window.addEventListener('load', () => ScrollTrigger.refresh());
   window.__effectsReady = true;
 })();
