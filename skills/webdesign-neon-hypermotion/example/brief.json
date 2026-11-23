@@ -1,0 +1,51 @@
+{
+  "brand": "BlazeRidge",
+  "wordmark": ["BLAZE", "RIDGE"],
+  "logo_img": "img/logo.jpg",
+  "tagline": "Kurzvideos, Vorlagen und Firmenvideos",
+  "description": "BlazeRidge – filmische Kurzvideos, Video-Vorlagen und Firmenvideos. Testseite im Neon-Hypermotion-Stil.",
+  "lang": "de",
+  "shop_url": "https://blazeridge.de/shop.html",
+  "hero": {"subtitle": "Filmische Kurzvideos, Video-Vorlagen und Firmenvideos – dunkel, mit Licht, Partikeln und Bewegung."},
+  "imac": {
+    "url": "blazeridge.de", "w": 1600, "vh": 900,
+    "pages": {"home": {"img": "img/home.jpg", "h": 900}, "shop": {"img": "img/shop.jpg", "h": 2242}, "danke": {"img": "img/danke.jpg", "h": 900}},
+    "captions": ["blazeridge.de öffnen", "Shop now", "Buy all", "Bestellt"],
+    "steps": [
+      {"cap": 0, "cursor": [1250, 560]},
+      {"cursor": [700, 420]},
+      {"cursor": [955, 44], "label": "Shop now", "click": true, "cap": 1},
+      {"page": "shop", "scroll": 0, "cursor": [820, 330], "label": ""},
+      {"scroll": 430, "cursor": [473, 870], "label": "Buy all", "click": true, "cart": 1, "cap": 2},
+      {"cursor": [803, 870], "click": true, "cart": 2},
+      {"scroll": 1000, "cursor": [143, 1454], "click": true, "cart": 3},
+      {"cursor": [473, 1454], "click": true, "cart": 4},
+      {"page": "danke", "scroll": 0, "cursor": [820, 520], "label": "", "burst": true, "cap": 3}
+    ]
+  },
+  "offer_title_html": "Vorlagen &amp; <em>Videos</em>",
+  "products": [
+    {"tag": "Gratis", "name": "Gratis-Muster", "price": "0 €", "text": "„Warum gibt es ein Echo?“ – Skript, sechs Szenen, Bildprompts und Quellen als Beispiel."},
+    {"tag": "Digital", "name": "Starter", "price": "7 €", "text": "Vorlagen und Szenenplan für deinen ersten Wissensclip."},
+    {"tag": "Digital", "name": "Producer", "price": "19 €", "text": "Alles aus Starter plus Vorlagen für KI-Erklärvideos und ein Produktionsboard."},
+    {"tag": "Digital", "name": "Studio", "price": "39 €", "text": "Alles aus Producer plus Serienbibel, erste Folge und Storyboard für deine 2D-Cartoonserie."},
+    {"tag": "Digital", "name": "Video-Briefing-Set", "price": "12 €", "text": "Vorlagen, Beispiel und Checkliste, um ein Firmenvideo vorzubereiten."},
+    {"tag": "Dienstleistung", "name": "Firmenvideo-Pilot", "price": "390 €", "text": "Drei animierte Hochkantvideos (20–35 s) mit Skript, deutscher Sprecherstimme und Untertiteln. Auf Anfrage."},
+    {"tag": "Dienstleistung", "name": "Webdesign", "price": "auf Anfrage", "text": "Vom Onepager bis zu Shop & Experience mit Animationen und 3D-Elementen."}
+  ],
+  "offer_note": "Alle Preise sind Endpreise (§ 19 UStG). Gekauft wird auf blazeridge.de/shop.html.",
+  "marquee": ["Wissensclips", "Cartoon-Serien", "Firmenvideos", "Webdesign", "Vorlagen"],
+  "stats": [
+    {"value": "1368", "label": "TikTok-Follower"},
+    {"value": "60025", "label": "TikTok-Aufrufe in 4 Wochen"},
+    {"value": "182", "label": "Kurzvideos in 30 Tagen"}
+  ],
+  "stats_note": "TikTok @blazeridge, Stand 12.11.2026 (Aufrufe 13.10.–10.11.2026).",
+  "channels": [
+    {"name": "TikTok", "handle": "@blazeridge", "href": "https://www.tiktok.com/@blazeridge"},
+    {"name": "YouTube", "handle": "@blazeridgeorigin", "href": "https://www.youtube.com/@blazeridgeorigin"},
+    {"name": "Instagram", "handle": "blazeridge.original", "href": "https://www.instagram.com/blazeridge.original/"},
+    {"name": "Facebook", "handle": "BlazeRidge", "href": "https://www.facebook.com/blazeridge.original"}
+  ],
+  "footer": "© 2026 BlazeRidge · Testseite (Entwurf)"
+}

@@ -79,6 +79,7 @@ def page(brief, out, inline, r):
 {''.join(js_tag(n) for n in BASE_LIBS)}
 {three}
 {effects_tag}
+{('<script>' + r['js'] + '</script>') if r.get('js') else ''}
 </body>
 </html>
 """
@@ -104,6 +105,7 @@ def main():
     ap.add_argument("--inline", action="store_true")
     a = ap.parse_args()
     brief = json.loads(Path(a.brief).read_text())
+    brief.setdefault("_dir", str(Path(a.brief).resolve().parent))
     mod = load_style(a.style)
     r = mod.render(brief, {"esc": esc})
     f = page(brief, Path(a.out), a.inline, r)
