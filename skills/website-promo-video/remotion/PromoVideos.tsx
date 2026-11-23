@@ -96,7 +96,7 @@ export const DeskMonitor: React.FC<DeskProps> = (p) => {
         </AbsoluteFill>
       )}
       <div style={{position: 'absolute', bottom: 60, left: 0, right: 0, textAlign: 'center', fontFamily: 'Inter', fontSize: 24,
-        color: '#ffffff99'}}>{p.brand} · Video mit KI erstellt</div>
+        color: '#ffffff99'}}>{p.brand}</div>
     </AbsoluteFill>
   );
 };
@@ -145,7 +145,7 @@ export const EffectsList: React.FC<ListProps> = (p) => {
         })}
       </div>
       <div style={{position: 'absolute', bottom: 70, width: '100%', textAlign: 'center', fontSize: 24, color: '#666'}}>
-        Alle Effekte kostenlos: GSAP · Lenis · three.js · Video mit KI erstellt</div>
+        Alle Effekte: GSAP · Lenis · three.js</div>
       <AbsoluteFill style={{background: `rgba(0,0,0,${dim})`}} />
       {f >= clipEnd && (
         <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'column', gap: 24, opacity: o}}>
@@ -209,8 +209,6 @@ export const CaseCollage: React.FC<CollageProps> = (p) => {
           <div style={{display: 'flex', gap: 12, alignItems: 'center', color: '#fff', fontSize: 40}}><IG size={44} />{p.handle}</div>
         </AbsoluteFill>
       )}
-      <div style={{position: 'absolute', bottom: 40, width: '100%', textAlign: 'center', fontSize: 22, color: '#0e111699'}}>
-        Video mit KI erstellt</div>
     </AbsoluteFill>
   );
 };

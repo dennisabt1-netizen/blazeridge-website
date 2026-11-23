@@ -9,6 +9,8 @@ git -C "$REPO" archive origin/skills | tar -x -C "$TMP"
 mkdir -p ~/.claude/skills ~/.claude/agents
 cp -r "$TMP"/skills/* ~/.claude/skills/
 cp "$TMP"/agents/*.md ~/.claude/agents/
+# Dauerhafte Regeln (globales Gedächtnis für jede Sitzung)
+cp "$TMP"/CLAUDE.md ~/.claude/CLAUDE.md
 # Graphify (Apache-2.0) – Wissensgraph fürs Repo, spart Tokens
 if [ ! -x ~/.graphify-venv/bin/graphify ]; then
   python3 -m venv ~/.graphify-venv && ~/.graphify-venv/bin/pip install -q graphifyy

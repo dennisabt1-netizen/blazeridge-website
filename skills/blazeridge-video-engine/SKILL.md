@@ -15,4 +15,4 @@ Kurzablauf (im Arbeitsordner, Engine-Pfad `E=~/.claude/skills/blazeridge-video-e
 5. `cfg_<name>.js` aus `beispiele/` kopieren und anpassen → `python3 $E/engine/build.py <name>`
 6. Probebilder: `node $E/engine/render.js $PWD/<name>/scene.html $PWD/<name>/qa 30 30 1.5,5,9,13,17,21,25` → ansehen (Subagent video-check).
 7. Vollrender + `python3 $E/engine/mix.py ...` + ffmpeg (siehe README).
-Regeln: keine echten Personen/fremden Figuren, Fakten prüfen, KI kennzeichnen, max. 1 Claude-Video/Tag veröffentlichen, nichts ohne Ja hochladen.
+Regeln: keine echten Personen/fremden Figuren, Fakten prüfen, kein KI-Hinweis im Video (nur in der Beschreibung, wenn Dennis es sagt), max. 1 Claude-Video/Tag veröffentlichen, nichts ohne Ja hochladen.

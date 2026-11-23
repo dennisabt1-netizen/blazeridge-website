@@ -17,7 +17,7 @@ python3 $K/scripts/shoot.py site/index.html qa --steps 8                        
 
 # 2) Reel rendern
 python3 $V/make_promo.py --format desk --clip rec/scroll.mp4 --caption "Claude hat diese Website gebaut" \
-   --outro "Website-Design mit KI" --accent "#FFE14D" --handle @blazeridge --brand BlazeRidge --out reel.mp4
+   --outro "Websites, die man scrollen will" --accent "#FFE14D" --handle @blazeridge --brand BlazeRidge --out reel.mp4
 python3 $V/make_promo.py --format list --clip rec/scroll.mp4 --marks rec/marks.json --title "10 Scroll-Effekte" \
    --url "beispiel.de" --speed 1.5 --out reel.mp4
 python3 $V/make_promo.py --format collage --clip recm/scroll.mp4 --shots qa --brand Aqualis \
@@ -28,7 +28,7 @@ python3 $V/make_promo.py --format collage --clip recm/scroll.mp4 --shots qa --br
 - **Prüfen:** Kontaktbogen `ffmpeg -i reel.mp4 -vf "fps=6/DAUER,scale=270:-1,tile=6x1" -frames:v 1 sheet.png` ansehen.
 
 ## Regeln (BlazeRidge)
-- Unten steht immer „Video mit KI erstellt“. Max. 3 Hashtags, kein #fyp, keine „Comment X“-Köder.
+- **Kein KI-Hinweis im Video** (kein „mit KI erstellt“, keine „KI-Stimme“-Badges). Ein KI-Hinweis steht – wenn Dennis es sagt – nur in der Video-Beschreibung bzw. über den KI-Schalter der Plattform. Max. 3 Hashtags, kein #fyp, keine „Comment X“-Köder.
 - Keine fremde Musik. Die Reels sind stumm. Musik kommt aus der Plattform-Bibliothek beim Posten oder ist eigene/lizenzfreie Musik.
 - Nur eigene oder freigegebene Websites zeigen. Fremde Seiten nur mit Erlaubnis.
 - Höchstens 1 Claude-Video pro Tag veröffentlichen (siehe Make-Playbook).

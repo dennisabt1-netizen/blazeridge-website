@@ -28,8 +28,8 @@ const Clip: React.FC<{src: string; from: number; speed: number; at: number; styl
   </Sequence>
 );
 const Note: React.FC<{text?: string; color?: string}> = ({text, color = '#ffffff88'}) => (
-  <div style={{position: 'absolute', bottom: 44, width: '100%', textAlign: 'center', fontFamily: 'Inter', fontSize: 22, color}}>
-    {text ?? 'Video mit KI erstellt · Beispiel-Designs'}</div>
+  <div style={{position: 'absolute', zIndex: 100, bottom: 40, width: '100%', textAlign: 'center', fontFamily: 'Inter', fontWeight: 600, fontSize: 28, color}}>
+    {text ?? 'Beispiel-Designs'}</div>
 );
 
 /* ======================================================= 1) FLOW — zoom-through + liquid circle reveal */
