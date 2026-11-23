@@ -6,7 +6,8 @@ import {
 /* Webdesign ad reels: several website designs one after another, fast effects, flowing transitions.
    Segments come from props: {clip, from (s), dur (s), label, color, mclip? (phone clip)} */
 export type Seg = {clip: string; from: number; dur: number; label: string; tag?: string; color: string; mclip?: string; mfrom?: number};
-export type AdProps = {segs: Seg[]; brand: string; line1: string; line2: string; cta: string; handle: string; speed?: number; note?: string};
+export type AdProps = {segs: Seg[]; brand: string; line1: string; line2: string; cta: string; handle: string; speed?: number; note?: string;
+  intro?: string; introWords?: string[]; chips?: string[]; accent?: string};
 
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 const fontCss = `
@@ -144,7 +145,7 @@ export const AdDevices: React.FC<AdProps> = (p) => {
   const cur = p.segs[idx];
   const prev = p.segs[Math.max(0, idx - 1)];
   const mix = interpolate(f - st[idx], [0, T], [0, 1], clamp);
-  const chips = ['Scroll-Effekte', '3D', 'Animation', 'Mobil optimiert', 'Glas-Look', 'Parallax'];
+  const chips = p.chips ?? ['Scroll-Effekte', '3D', 'Animation', 'Mobil optimiert', 'Glas-Look', 'Parallax'];
   return (
     <AbsoluteFill style={{background: '#EDEDF0', overflow: 'hidden', fontFamily: 'Inter'}}>
       <style>{fontCss}</style>
@@ -156,8 +157,8 @@ export const AdDevices: React.FC<AdProps> = (p) => {
           {p.segs.map((s, i) => {
             const l = f - st[i];
             const y = interpolate(l, [-6, 6, segF(s) - 6, segF(s) + 6], [100, 0, 0, -100], clamp);
-            return <div key={i} style={{position: 'absolute', fontFamily: 'Anton', fontSize: 124, color: '#111', lineHeight: 1.1,
-              transform: `translateY(${y}%)`}}>{s.label}<span style={{color: s.color}}>.</span></div>;
+            return <div key={i} style={{position: 'absolute', fontFamily: 'Anton', fontSize: Math.min(124, Math.round(1500 / Math.max(1, s.label.length))), whiteSpace: 'nowrap', color: '#111', lineHeight: 1.1,
+              transform: `translateY(${y * 1.5}px)`}}>{s.label}<span style={{color: s.color}}>.</span></div>;
           })}
         </div>
       </div>
@@ -180,13 +181,13 @@ export const AdDevices: React.FC<AdProps> = (p) => {
       {/* intro devices rise */}
       <AbsoluteFill style={{background: '#EDEDF0', opacity: interpolate(f, [INTRO - 14, INTRO], [1, 0], clamp), justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
         <div style={{fontFamily: 'Anton', fontSize: 140, color: '#111', transform: `translateY(${(1 - spring({frame: f, fps})) * 200}px)`}}>{p.brand}</div>
-        <div style={{fontSize: 50, color: '#333', opacity: spring({frame: f - 12, fps})}}>baut Websites, die man scrollen will.</div>
+        <div style={{fontSize: 50, color: '#333', textAlign: 'center', maxWidth: 900, opacity: spring({frame: f - 12, fps})}}>{p.intro ?? 'baut Websites, die man scrollen will.'}</div>
       </AbsoluteFill>
       {/* floating chips */}
       {f >= INTRO && f < end && chips.map((c, k) => {
         const birth = INTRO + k * 22;
         const s = spring({frame: f - birth, fps, config: {damping: 10}});
-        const pos = [[70, 1300], [560, 470], [90, 1560], [640, 1640], [700, 1240], [300, 470]][k];
+        const pos = [[70, 1330], [640, 470], [90, 1580], [600, 1660], [700, 1250], [70, 470]][k];
         return <div key={c} style={{position: 'absolute', left: pos[0], top: pos[1], transform: `scale(${s}) translateY(${Math.sin((f + k * 30) / 14) * 8}px)`,
           background: 'rgba(255,255,255,.72)', border: '1px solid #fff', backdropFilter: 'blur(14px)', borderRadius: 999, padding: '14px 26px',
           fontSize: 30, fontWeight: 600, color: '#111', boxShadow: '0 10px 30px rgba(0,0,0,.12)'}}>{c}</div>;
@@ -231,9 +232,9 @@ export const AdKinetic: React.FC<AdProps> = (p) => {
       {/* intro: words slam in one by one */}
       {f < INTRO && (
         <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-          {['WEB', 'DESIGN', 'DAS', 'MAN', 'SPÜRT.'].map((w, i) => {
+          {(p.introWords ?? ['WEB', 'DESIGN', 'DAS', 'MAN', 'SPÜRT.']).map((w, i, arr) => {
             const s = spring({frame: f - i * 9, fps, config: {damping: 9, mass: 0.5}});
-            return <div key={w} style={{fontFamily: 'Anton', fontSize: 150, lineHeight: 1.02, color: i === 4 ? '#FF7A1A' : '#fff',
+            return <div key={w} style={{fontFamily: 'Anton', fontSize: 150, lineHeight: 1.02, color: i === arr.length - 1 ? (p.accent ?? '#FF7A1A') : '#fff',
               transform: `scale(${1.8 - Math.min(1, s) * 0.8})`, opacity: Math.min(1, s)}}>{w}</div>;
           })}
         </AbsoluteFill>

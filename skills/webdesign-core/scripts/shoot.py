@@ -68,6 +68,7 @@ def main():
     ap.add_argument("--steps", type=int, default=8)
     ap.add_argument("--video", action="store_true")
     ap.add_argument("--mobile", action="store_true")
+    ap.add_argument("--root", help="serve this folder (site root) instead of the html file's folder")
     ap.add_argument("--video-size", default="1280x720", help="e.g. 430x932 for a phone-format recording")
     a = ap.parse_args()
     out = Path(a.out).resolve(); out.mkdir(parents=True, exist_ok=True)
@@ -75,11 +76,11 @@ def main():
     html = Path(a.html).resolve()
     import socket, time
     s = socket.socket(); s.bind(("127.0.0.1", 0)); port = s.getsockname()[1]; s.close()
-    srv = subprocess.Popen([sys.executable, "-m", "http.server", str(port), "--bind", "127.0.0.1", "-d", str(html.parent)],
+    srv = subprocess.Popen([sys.executable, "-m", "http.server", str(port), "--bind", "127.0.0.1", "-d", str(Path(a.root).resolve() if a.root else html.parent)],
                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     time.sleep(0.8)
     try:
-        p = subprocess.run(["node", str(js), f"http://127.0.0.1:{port}/{html.name}", str(out), str(a.steps),
+        p = subprocess.run(["node", str(js), f"http://127.0.0.1:{port}/" + (str(html.relative_to(Path(a.root).resolve())) if a.root else html.name).removesuffix("index.html"), str(out), str(a.steps),
                             "1" if a.video else "0", "1" if a.mobile else "0", a.video_size], capture_output=True, text=True)
     finally:
         srv.terminate()

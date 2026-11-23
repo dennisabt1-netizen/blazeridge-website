@@ -279,7 +279,7 @@ const Subtitle: React.FC<{text: string}> = ({text}) => {
 const Badge: React.FC = () => (
   <AbsoluteFill style={{alignItems: 'flex-start', padding: 60}}>
     <div style={{fontFamily: 'Inter, sans-serif', fontSize: 34, color: MUTED, border: `2px solid ${MUTED}`, borderRadius: 14, padding: '8px 18px'}}>
-      KI-Stimme · Quelle: Dawson & Reid, Nature 1997
+      Quelle: Dawson & Reid, Nature 1997
     </div>
   </AbsoluteFill>
 );
