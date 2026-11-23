@@ -115,7 +115,7 @@ html{{background:var(--bg)}} body{{background:transparent;color:var(--ink);font-
 @keyframes spin{{to{{transform:rotate(90deg)}}}}
 .vignette{{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(120% 85% at 50% 40%,transparent 35%,rgba(0,0,0,.7))}}
 .nav{{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:12px clamp(16px,4vw,44px);
-  background:linear-gradient(rgba(13,15,19,.92),rgba(13,15,19,0))}}
+  background:rgba(13,15,19,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}}
 .nav .brand{{display:flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:19px;text-decoration:none;color:var(--ink)}}
 .nav .brand .bolt{{width:14px;height:28px}}
 .nav .links{{display:flex;gap:22px;align-items:center;font-size:14px}} .nav .links a{{text-decoration:none;opacity:.85}}
@@ -140,7 +140,7 @@ html{{background:var(--bg)}} body{{background:transparent;color:var(--ink);font-
 @keyframes drip{{from{{transform:scaleY(0);transform-origin:top}}to{{transform:scaleY(1);transform-origin:top}}}}
 .panel{{background:rgba(16,19,24,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.09);border-radius:26px}}
 .intro{{max-width:1040px;margin:10vh auto;padding:clamp(26px,5vw,56px);display:grid;grid-template-columns:1.4fr 1fr;gap:34px;align-items:center}}
-.intro h2{{font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(28px,3.8vw,50px);line-height:1.08;margin:0}}
+.intro h2{{text-wrap:balance;font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(28px,3.8vw,50px);line-height:1.08;margin:0}}
 .intro p{{font-size:clamp(16px,1.5vw,19px);line-height:1.6;opacity:.82;margin:16px 0 0}}
 .stats{{display:grid;gap:14px}}
 .stat{{border-left:4px solid var(--red);padding:6px 0 6px 16px}}
