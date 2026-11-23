@@ -1,0 +1,1 @@
+{"name":"claude-motion","private":true,"type":"module","scripts":{"render":"remotion render src/index.ts Promo out/promo.mp4"},"dependencies":{"@react-three/fiber":"^8.17.10","@remotion/cli":"^4.0.543","@remotion/three":"^4.0.543","@types/three":"^0.170.0","react":"^18.3.1","react-dom":"^18.3.1","remotion":"^4.0.543","three":"^0.170.0","typescript":"^7.0.2"}}

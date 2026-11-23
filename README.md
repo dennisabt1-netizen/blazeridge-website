@@ -12,5 +12,5 @@ Nicht Teil der Website (GitHub Pages veröffentlicht nur `main`). Hier liegen di
 
 Agenten (`agents/`): web-qa (haiku), video-check (haiku), brief-writer (sonnet), make-waechter/anfragen/auftrags/content (haiku).
 
-Wiederherstellen in neuer Sitzung: `bash <(git show origin/skills:restore.sh)` (installiert auch Graphify).
+Wiederherstellen: läuft automatisch über das Setup-Skript der Umgebung „Yputoube“; manuell: `bash <(git show origin/skills:restore.sh)` (Skills, Agenten, Graphify, ~/claude-motion, Piper-Stimme).
 Alles kostenlos: GSAP Standard-Lizenz, Lenis MIT, three.js MIT, Graphify Apache-2.0, Google Fonts OFL.

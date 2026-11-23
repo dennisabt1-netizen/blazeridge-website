@@ -16,6 +16,21 @@ fi
 ~/.graphify-venv/bin/graphify install --platform claude >/dev/null 2>&1 || true
 grep -q '^graphify-out/' "$REPO/.git/info/exclude" 2>/dev/null || echo 'graphify-out/' >> "$REPO/.git/info/exclude"
 (cd "$REPO" && ~/.graphify-venv/bin/graphify update . >/dev/null 2>&1) || true
+
+# Remotion-Projekt (~/claude-motion) für Videos
+if [ ! -d ~/claude-motion/node_modules/remotion ]; then
+  mkdir -p ~/claude-motion && cp -rn "$TMP"/claude-motion/. ~/claude-motion/
+  (cd ~/claude-motion && npm install --no-audit --no-fund --silent) || echo "npm install claude-motion fehlgeschlagen"
+else
+  cp -r "$TMP"/claude-motion/src/. ~/claude-motion/src/
+fi
+# Freie deutsche Stimme (Piper, thorsten-high)
+if ! command -v piper >/dev/null 2>&1; then pip install -q piper-tts || true; fi
+V=~/.local/share/piper; mkdir -p "$V"
+if [ ! -f "$V/de_DE-thorsten-high.onnx" ]; then
+  curl -sSL -o "$V/de_DE-thorsten-high.onnx" https://huggingface.co/rhasspy/piper-voices/resolve/main/de/de_DE/thorsten/high/de_DE-thorsten-high.onnx || true
+  curl -sSL -o "$V/de_DE-thorsten-high.onnx.json" https://huggingface.co/rhasspy/piper-voices/resolve/main/de/de_DE/thorsten/high/de_DE-thorsten-high.onnx.json || true
+fi
 rm -rf "$TMP"
 echo "skills: $(ls ~/.claude/skills | tr '\n' ' ')"
 echo "agents: $(ls ~/.claude/agents | tr '\n' ' ')"
