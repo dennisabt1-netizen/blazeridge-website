@@ -36,3 +36,14 @@ python3 $V/make_promo.py --format collage --clip recm/scroll.mp4 --shots qa --br
 ## Dateien
 `remotion/PromoVideos.tsx` (DeskMonitor, EffectsList, CaseCollage) · `remotion/promo-entry.tsx` (eigener Einstieg, `Root.tsx` bleibt unberührt) · `scripts/make_promo.py`.
 Getestet 22.11.2026: desk 14,5 s, list 28,7 s (alle 10 Effekte erkannt), collage 18,8 s.
+
+## Werbe-Reels mit mehreren Designs (AdFlow · AdDevices · AdKinetic)
+Mehrere Website-Aufnahmen nacheinander, schnelle Effekte, fließende Übergänge. Einstieg `remotion/ad-entry.tsx`, Code `remotion/AdVideos.tsx`.
+- **AdFlow**: dunkel, Buchstaben-Intro, Kreis-Reveal + Zoom-durch-Übergang, Umgebungsfarbe folgt dem Design, Fortschrittspunkte.
+- **AdDevices**: hell, 3D-Laptop + Handy, Dreh-Übergang (rotateY), wechselnde Überschrift, schwebende Glas-Chips, Outro-Mosaik.
+- **AdKinetic**: Riesen-Outline-Wort, schräger Rahmen, RGB-Glitch + Weißblitz beim Schnitt, Streifen-Wipe, Zähler 01/07.
+Props: `{brand, handle, line1, line2, cta, note, speed, segs:[{clip:"ad/x.mp4", from, dur, label, tag, color, mclip?, mfrom?}]}`.
+Clips nach `~/claude-motion/public/ad/` kopieren, `AdVideos.tsx` + `ad-entry.tsx` nach `~/claude-motion/src/promo/`, dann
+`npx remotion render src/promo/ad-entry.tsx AdFlow out.mp4 --props=props.json --browser-executable=<chrome-headless-shell>`.
+Vorher Stills prüfen (`npx remotion still ... --frame=N --scale=0.25`). Jeder Clip ist an seinen Abschnitt gekoppelt (Sequence), `from` = Sekunde in der Aufnahme.
+Erst im Chat zeigen, nicht hochladen. Fiktive Beispielmarken im Video kennzeichnen.
