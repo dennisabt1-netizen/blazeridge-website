@@ -263,6 +263,42 @@
       { clipPath: 'polygon(0 0, 110% 0, 100% 100%, 0 100%)', duration: 1.1, ease: 'power3.inOut', scrollTrigger: { trigger: el, start: 'top 85%' } });
   });
 
+  // ---- Circuit (Elektriker): [data-circuit] fixed background SVG. path.trace.main = Hauptleitung, path.trace = Abzweige,
+  //      .node[data-x][data-y] = Lötpunkte/Bauteile, .spark = Funke am Stromkopf. Scroll-Fortschritt lässt Strom durch die
+  //      Leitung fließen; Abzweige starten, wenn der Hauptstrom an ihrem Anfang vorbeikommt; Knoten leuchten auf (Klasse "on").
+  $$('[data-circuit]').forEach((svg) => {
+    const main = svg.querySelector('path.trace.main');
+    if (!main) return;
+    const ML = main.getTotalLength();
+    const near = (x, y) => { let best = 0, bd = 1e9; for (let s = 0; s <= 240; s++) { const p = main.getPointAtLength(ML * s / 240);
+      const d = (p.x - x) ** 2 + (p.y - y) ** 2; if (d < bd) { bd = d; best = s / 240; } } return best; };
+    const traces = $$('path.trace', svg).map((p) => {
+      const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = reduce ? 0 : L;
+      const st = p.getPointAtLength(0);
+      return { p, L, from: p === main ? 0 : near(st.x, st.y), len: p === main ? 1 : Math.min(0.14, L / ML * 1.1) };
+    });
+    const byId = {}; traces.forEach((t) => { if (t.p.id) byId[t.p.id] = t; });
+    const nodes = $$('.node', svg).map((n) => { const t = byId[n.dataset.trace];
+      return { n, at: t ? t.from + t.len * 0.98 : near(parseFloat(n.dataset.x), parseFloat(n.dataset.y)) + 0.01 }; });
+    const spark = svg.querySelector('.spark');
+    if (reduce) { nodes.forEach((o) => o.n.classList.add('on')); if (spark) spark.style.display = 'none'; return; }
+    const run = (prog) => {
+      traces.forEach((t) => { const k = Math.min(1, Math.max(0, (prog - t.from) / t.len)); t.p.style.strokeDashoffset = t.L * (1 - k); });
+      nodes.forEach((o) => o.n.classList.toggle('on', prog >= o.at));
+      if (spark) { const pt = main.getPointAtLength(ML * Math.min(prog, 0.999));
+        spark.setAttribute('transform', `translate(${pt.x.toFixed(1)} ${pt.y.toFixed(1)})`); spark.style.opacity = prog > 0.002 && prog < 0.995 ? 1 : 0; }
+    };
+    run(0);
+    ScrollTrigger.create({ trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.5, onUpdate: (s) => run(s.progress) });
+  });
+  // Lamp switch-on: [data-bulb] gets class "flick" then "on" when it scrolls into view (off again when scrolled back above)
+  $$('[data-bulb]').forEach((el) => {
+    if (reduce) { el.classList.add('on'); return; }
+    ScrollTrigger.create({ trigger: el, start: 'top 80%', onEnter: () => {
+      el.classList.add('flick'); setTimeout(() => { el.classList.remove('flick'); el.classList.add('on'); }, 560); },
+      onLeaveBack: () => el.classList.remove('on', 'flick') });
+  });
+
   window.addEventListener('load', () => ScrollTrigger.refresh());
   window.__effectsReady = true;
 })();

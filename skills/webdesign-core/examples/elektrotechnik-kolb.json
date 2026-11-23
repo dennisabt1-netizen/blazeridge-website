@@ -1,0 +1,36 @@
+{
+  "brand": "Elektrotechnik Kolb GmbH",
+  "short_brand": "Kolb",
+  "logo": {"lead": "e", "word": "lektrotechnik", "name": "Kolb", "suffix": "GmbH"},
+  "tagline": "Elektrofachbetrieb in Niederstotzingen",
+  "description": "Elektrotechnik Kolb GmbH – Elektrofachbetrieb aus Niederstotzingen für Industrie, Handel, Gemeinden und Privat: Elektroinstallation, Lichttechnik, KNX/Smart Home, Ladestationen, Datennetzwerke, Schaltschrankbau, E-Check.",
+  "lang": "de",
+  "hero": {"title_html": "Strom, Licht &amp; Technik aus <em>Niederstotzingen</em>",
+          "subtitle": "Ihr Elektrofachbetrieb für Industrie, Handel, Gemeinden und Privat – seit über 30 Jahren."},
+  "about": {"heading": "Elektrotechnik, auf die man sich verlassen kann.",
+            "text": "Von der Steckdose bis zum Schaltschrank: Wir planen, installieren und warten Gebäudetechnik, Licht, Netzwerke und Ladestationen – im Landkreis Heidenheim und darüber hinaus."},
+  "stats": [
+    {"value": "30", "suffix": "+", "label": "Jahre Erfahrung"},
+    {"value": "4.6", "suffix": " ★", "label": "Google-Bewertung (11 Bewertungen)"}
+  ],
+  "services_lede": "Für Industrie, Handel, Gemeinden und Privatkunden.",
+  "items": [
+    {"title": "Elektroinstallation & Gebäudetechnik", "short": "Elektroinstallation", "icon": "haus", "text": "Installation und Wartung der kompletten Gebäudetechnik – Neubau, Umbau, Sanierung."},
+    {"title": "Licht innen & außen", "short": "Lichttechnik", "icon": "licht", "text": "Beleuchtungskörper und Außenbeleuchtungen fachgerecht installiert."},
+    {"title": "Steckdosen & Schalter", "short": "Steckdosen & Schalter", "icon": "steckdose", "text": "Installieren, reparieren und versetzen – sauber und sicher."},
+    {"title": "KNX & Smart Home", "short": "Smart Home", "icon": "smarthome", "text": "Intelligente Gebäudesteuerung mit KNX/EIB."},
+    {"title": "Ladestationen E-Mobilität", "short": "E-Mobilität", "icon": "emobil", "text": "Wallbox und Ladestationen für Zuhause und Betrieb."},
+    {"title": "Datennetzwerke & Sicherheit", "short": "Netzwerk", "icon": "netzwerk", "text": "Datennetze, Kommunikations- und Sicherheitstechnik."},
+    {"title": "Schaltschrankbau & Automatisierung", "short": "Schaltschrankbau", "icon": "schaltschrank", "text": "Schaltschränke und Automatisierung (S7) für Industrie und Gemeinden."},
+    {"title": "E-Check & Thermografie", "short": "E-Check", "icon": "pruefung", "text": "Prüfung elektrischer Anlagen und Fehlersuche mit Wärmebild."}
+  ],
+  "contact": {
+    "phone": "07325 9529260",
+    "phone_href": "tel:+4973259529260",
+    "email": "mail@et-kolb.de",
+    "address": ["Elektrotechnik Kolb GmbH", "Breite Str. 41", "89168 Niederstotzingen"],
+    "maps": "https://www.google.com/maps/search/?api=1&query=Breite+Str.+41+89168+Niederstotzingen",
+    "hours": "Werktags ab 7:00 Uhr erreichbar."
+  },
+  "footer": "© Elektrotechnik Kolb GmbH · Beispiel-Entwurf (Testseite)"
+}
