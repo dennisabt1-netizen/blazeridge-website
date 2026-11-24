@@ -99,6 +99,55 @@
   .i-end .sub { margin-top: 12px; max-width: 520px; }
   .i-end .ctas { margin-top: 20px; justify-content: center; }
 
+
+  /* ---------- INTRO add-ons: neon volcano bolts + live laptop screen ---------- */
+  :root { --neon: #39FF7A; }
+  #bolts { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; z-index: 1; mix-blend-mode: screen; }
+  .gflash { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; background: radial-gradient(70% 60% at 50% 35%, rgba(57,255,122,0.22), transparent 70%); }
+  .scr { position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 0 0; z-index: 3; overflow: hidden; background: #05040a; visibility: hidden; opacity: 0; pointer-events: none; cursor: crosshair; color: var(--ink); --px: 0; --py: 0; --flash: 0; }
+  .scr.vis { visibility: visible; }
+  .scr.live { pointer-events: auto; }
+  .scr canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .scr::before { content: ""; position: absolute; inset: 0; z-index: 5; pointer-events: none; background: #eafff0; opacity: var(--flash); }
+  .scr::after { content: ""; position: absolute; inset: 0; z-index: 4; pointer-events: none; background: linear-gradient(115deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0) 40%), repeating-linear-gradient(180deg, rgba(0,0,0,0.12) 0 2px, transparent 2px 5px); }
+  .s-layer { position: absolute; inset: 0; z-index: 2; transform: translate3d(calc(var(--px) * -22px), calc(var(--py) * -14px), 0); }
+  .s-nav { position: absolute; top: 46px; left: 70px; right: 70px; display: flex; justify-content: space-between; align-items: center; }
+  .s-logo { display: flex; align-items: center; gap: 16px; font: 800 30px/1 Saira, Inter, sans-serif; letter-spacing: 0.16em; text-transform: uppercase; }
+  .s-logo svg { width: 44px; height: 44px; }
+  .s-links { display: flex; gap: 44px; font: 500 24px/1 Inter, sans-serif; color: var(--muted); }
+  .s-links b { color: var(--neon); font-weight: 600; }
+  .s-copy { position: absolute; left: 100px; top: 170px; width: 1000px; }
+  .s-kick { display: inline-flex; align-items: center; gap: 14px; font: 600 23px/1 Inter, sans-serif; letter-spacing: 0.3em; text-transform: uppercase; color: var(--neon); text-shadow: 0 0 18px rgba(57,255,122,0.7); }
+  .s-kick i { width: 14px; height: 14px; border-radius: 50%; background: var(--neon); box-shadow: 0 0 16px var(--neon); }
+  .s-h { margin-top: 28px; font: 400 156px/0.88 Anton, Impact, sans-serif; text-transform: uppercase; letter-spacing: 0.005em; text-shadow: 0 10px 60px rgba(0,0,0,0.6); }
+  .s-h em { font-family: "Instrument Serif", Georgia, serif; font-style: italic; text-transform: none; color: var(--accent); font-weight: 400; text-shadow: 0 0 40px rgba(255,106,26,0.55); }
+  .s-sub { margin-top: 30px; font: 400 31px/1.35 Inter, sans-serif; color: rgba(246,242,247,0.78); max-width: 780px; text-shadow: 0 2px 14px #000, 0 0 4px #000; }
+  .s-ctas { margin-top: 48px; display: flex; align-items: center; gap: 34px; }
+  .s-cta { display: inline-flex; align-items: center; gap: 18px; height: 100px; padding: 0 52px; border-radius: 999px; background: var(--neon); color: #03140a; font: 700 36px/1 Inter, sans-serif; box-shadow: 0 0 0 3px rgba(57,255,122,0.35), 0 0 70px rgba(57,255,122,0.6); transition: transform .45s var(--ease-out), box-shadow .45s var(--ease-out); cursor: pointer; }
+  .s-cta svg { width: 36px; height: 36px; transition: transform .45s var(--ease-out); }
+  .s-cta:hover, .s-cta:focus-visible { transform: translateY(-6px) scale(1.04); box-shadow: 0 0 0 4px rgba(57,255,122,0.6), 0 0 120px rgba(57,255,122,0.9); }
+  .s-cta:hover svg { transform: translate(4px, -4px); }
+  .s-note { font: 500 24px/1.3 Inter, sans-serif; color: var(--muted); }
+  .s-note b { display: block; color: var(--ink); font: 400 40px/1 Anton, Impact, sans-serif; letter-spacing: 0.02em; }
+  .s-chips { position: absolute; right: 80px; bottom: 70px; display: flex; flex-direction: column; gap: 16px; align-items: flex-end; transform: translate3d(calc(var(--px) * 30px), calc(var(--py) * 20px), 0); }
+  .s-chips span { padding: 14px 24px; border-radius: 999px; font: 600 22px/1 Inter, sans-serif; letter-spacing: 0.04em; border: 1px solid rgba(57,255,122,0.45); background: rgba(5,20,10,0.55); color: #c9ffd9; box-shadow: 0 0 30px rgba(57,255,122,0.18); }
+  .s-chips span:nth-child(2) { border-color: rgba(255,106,26,0.5); color: #ffd2b8; box-shadow: 0 0 30px rgba(255,106,26,0.2); }
+  .s-in { opacity: 0; transform: translateY(46px); filter: blur(10px); transition: opacity .9s var(--ease-out) var(--d, 0s), transform .9s var(--ease-out) var(--d, 0s), filter .9s var(--ease-out) var(--d, 0s); }
+  .scr.on .s-in { opacity: 1; transform: none; filter: none; }
+  .scr-hint, .m-cta { position: absolute; left: 50%; z-index: 4; transform: translateX(-50%); opacity: 0; pointer-events: none; transition: opacity .5s var(--ease-out); }
+  .scr-hint { bottom: clamp(14px, 3svh, 30px); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(201,255,217,0.8); white-space: nowrap; display: flex; align-items: center; gap: 10px; }
+  .scr-hint i { width: 8px; height: 8px; border-radius: 50%; background: var(--neon); box-shadow: 0 0 12px var(--neon); animation: pulse 2s infinite; }
+  .istage.on .scr-hint { opacity: 1; }
+  .m-cta { display: none; white-space: nowrap; bottom: 20svh; background: var(--neon); color: #03140a; box-shadow: 0 0 40px rgba(57,255,122,0.55); }
+  .istage.on .m-cta { opacity: 1; pointer-events: auto; }
+
+  /* ---------- TikTok headline (after the laptop) ---------- */
+  .tk { position: relative; padding: clamp(80px, 13vh, 140px) var(--pad) clamp(20px, 4vh, 50px); text-align: center; display: flex; flex-direction: column; align-items: center; }
+  .tk h1 { margin-top: 18px; font-size: clamp(36px, 4.6vw, 74px); line-height: 1.05; display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0 0.3em; }
+  .tk .q-wrap { font-size: 1.15em; height: 1.2em; margin: 0; }
+  .tk .sub { margin: 16px auto 0; max-width: 540px; }
+  .tk .ctas { justify-content: center; }
+
   /* ---------- REEL ---------- */
   .reel { padding: clamp(70px, 10vh, 120px) 0 clamp(40px, 6vh, 80px); overflow: hidden; }
   .reel-head { padding: 0 var(--pad); }
@@ -206,6 +255,11 @@
     .meta div { font-size: 10px; letter-spacing: 0.1em; }
     .scroll-hint { display: none; }
     .i-start { top: 13svh; }
+    .m-cta { display: inline-flex; }
+    .scr-hint { display: none; }
+    .tk h1 { font-size: 30px; flex-direction: column; align-items: center; }
+    .tk .q-wrap { justify-content: center; width: 100%; }
+    .tk .sub { font-size: 15px; }
     .i-end { bottom: 9svh; }
     .i-end h1 { font-size: 30px; flex-direction: column; align-items: center; }
     .i-end .q-wrap { justify-content: center; width: 100%; }
@@ -247,6 +301,7 @@
     <a href="#serien">Serien</a>
     <a href="shop.html" data-shop-nav>Shop</a>
     <a href="webdesign/">Webdesign</a>
+    <a href="was-koennen-wir/">Was können wir</a>
     <a href="login.html" data-auth-nav>Login</a>
   </nav>
   <a class="btn btn-primary" href="https://www.tiktok.com/@blazeridge" target="_blank" rel="noopener">Folgen
@@ -263,7 +318,34 @@
         <p class="open">Klapp ihn <em>auf.</em></p>
         <div class="scroll-hint2" aria-hidden="true">Scrollen<i></i></div>
       </div>
-      <div class="i-end" id="iEnd">
+      <canvas id="bolts" aria-hidden="true"></canvas>
+      <div class="gflash" id="gflash" aria-hidden="true"></div>
+      <div class="scr" id="scr" role="region" aria-label="Laptop-Bildschirm: BlazeRidge Webdesign">
+        <canvas id="scrfx" width="960" height="600" aria-hidden="true"></canvas>
+        <div class="s-layer">
+          <div class="s-nav s-in" style="--d:.05s">
+            <span class="s-logo"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 50 32 12l18 38" stroke="#FF6A1A" stroke-width="7" fill="none" stroke-linejoin="round"/><path d="M24 50h16" stroke="#39FF7A" stroke-width="6"/></svg>BlazeRidge Studio</span>
+            <span class="s-links" aria-hidden="true"><span>Pakete</span><span>Ablauf</span><b>Motion</b></span>
+          </div>
+          <div class="s-copy">
+            <div class="s-kick s-in" style="--d:.15s"><i></i>Webdesign mit Motion</div>
+            <div class="s-h s-in" style="--d:.25s">Websites, die sich <em>bewegen.</em></div>
+            <p class="s-sub s-in" style="--d:.38s">Scroll-Effekte, 3D und Motion Graphics für deine Marke. Gebaut von BlazeRidge, schnell auf jedem Handy.</p>
+            <div class="s-ctas s-in" style="--d:.5s">
+              <a class="s-cta" href="webdesign/">Webdesign anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+              <span class="s-note"><b>3 Pakete</b>Preis auf Anfrage</span>
+            </div>
+          </div>
+        </div>
+        <div class="s-chips" aria-hidden="true"><span class="s-in" style="--d:.6s">Scroll-Effekte</span><span class="s-in" style="--d:.7s">3D &amp; Motion</span><span class="s-in" style="--d:.8s">Mobil optimiert</span></div>
+      </div>
+      <div class="scr-hint" aria-hidden="true"><i></i>Fahr mit der Maus über den Bildschirm</div>
+      <a class="btn m-cta" href="webdesign/">Webdesign anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    </div>
+  </section>
+
+  <section class="tk" aria-label="BlazeRidge auf TikTok">
+    <span class="eyebrow reveal"><span class="dot"></span>BlazeRidge auf TikTok</span>
         <h1><span class="lead-q">Was wäre, wenn …</span><span class="q-wrap"><span class="q" id="q">die Sonne verschwindet?</span></span></h1>
         <p class="sub">Kurze Videos über die großen Fragen. Wissen, Überleben, dein Körper und KI, erzählt in unter einer Minute.</p>
         <div class="ctas">
@@ -272,8 +354,6 @@
           </a>
           <a class="btn btn-ghost" href="#videos">Weiter ↓</a>
         </div>
-      </div>
-    </div>
   </section>
 
   <section class="reel" id="videos" aria-label="Aktuelle Videos">
@@ -385,45 +465,238 @@
   }, 2800);
 
 
-  // ---------- Scroll-scrubbed laptop film (pre-extracted frames) ----------
+  // ---------- Laptop: scroll opens the lid, the screen powers on with a live webdesign demo,
+  //            neon-green volcano lightning flickers behind it ----------
   (() => {
-    const FRAMES = 96, END = 0.84;            // film finishes at 84% of the scroll, then holds
-    const section = document.querySelector('.intro');
-    const canvas = document.getElementById('lap');
-    const ctx = canvas.getContext('2d');
-    const iStart = document.getElementById('iStart'), iEnd = document.getElementById('iEnd');
-    const imgs = new Array(FRAMES); let smooth = 0, last = -1;
+    const OPEN = 25;                                   // frame 26 = lid fully open, screen square to camera
+    const T_OPEN = 0.40, T_ON0 = 0.43, T_ON1 = 0.55;   // scroll windows (0..1 of the intro runway)
+    const IW = 1600, IH = 900, SW = 1440, SH = 900;    // film frame size, virtual screen size
+    const SCREEN = [[150, 86], [1461, 86], [1322, 502], [271, 502]];                    // display corners in film px
+    const SIL = [[122, 50], [1486, 50], [1374, 500], [1514, 815], [94, 815], [226, 500]]; // laptop silhouette (bolts go behind)
+    const section = document.querySelector('.intro'), stage = section.querySelector('.istage');
+    const canvas = document.getElementById('lap'), ctx = canvas.getContext('2d');
+    const bc = document.getElementById('bolts'), bx = bc.getContext('2d');
+    const gflash = document.getElementById('gflash');
+    const scr = document.getElementById('scr'), fx = document.getElementById('scrfx'), fctx = fx.getContext('2d');
+    const iStart = document.getElementById('iStart');
+    const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+    const sstep = (a, b, v) => { const x = clamp((v - a) / (b - a)); return x * x * (3 - 2 * x); };
+    const lerp = (a, b, t) => a + (b - a) * t;
+
+    // frames 1..26 only (the rest of the old film is no longer needed)
+    const imgs = new Array(OPEN + 1);
     const src = (i) => 'media/laptop/f' + String(i + 1).padStart(3, '0') + '.jpg';
-    const load = (i) => { const im = new Image(); im.decoding = 'async'; im.onload = () => { last = -1; }; im.src = src(i); imgs[i] = im; };
-    const order = [0]; for (let step = 32; step >= 1; step = step >> 1) for (let i = 0; i < FRAMES; i += step) if (!order.includes(i)) order.push(i);
-    if (!order.includes(FRAMES - 1)) order.splice(1, 0, FRAMES - 1);
-    order.forEach(load);
-    const size = () => { const dpr = Math.min(devicePixelRatio || 1, 2); canvas.width = Math.round(innerWidth * dpr); canvas.height = Math.round(innerHeight * dpr); last = -1; };
+    const order = [0, OPEN]; for (let step = 8; step >= 1; step >>= 1) for (let i = 0; i <= OPEN; i += step) if (!order.includes(i)) order.push(i);
+    let dirty = true;
+    order.forEach((i) => { const im = new Image(); im.decoding = 'async'; im.onload = () => { dirty = true; }; im.src = src(i); imgs[i] = im; });
+    const nearest = (i) => { for (let d = 0; d <= OPEN; d++) for (const j of [i - d, i + d]) { const im = imgs[j]; if (im && im.complete && im.naturalWidth) return im; } return null; };
+
+    let W = 0, H = 0, dpr = 1;
+    const size = () => {
+      W = innerWidth; H = innerHeight; dpr = Math.min(devicePixelRatio || 1, 2);
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      bc.width = W; bc.height = H; dirty = true;
+    };
     size(); addEventListener('resize', size);
-    const nearest = (i) => { for (let d = 0; d < FRAMES; d++) for (const j of [i - d, i + d]) { const im = imgs[j]; if (im && im.complete && im.naturalWidth) return im; } return null; };
-    function draw(i) {
-      if (i === last) return;
-      const im = nearest(i); if (!im) return;
-      const cw = canvas.width, ch = canvas.height, iw = im.naturalWidth, ih = im.naturalHeight;
-      // landscape: cover. portrait: keep 62% of the film width visible so the laptop and logo stay readable
-      const cover = Math.max(cw / iw, ch / ih), s = cw / ch >= 1 ? cover : Math.min(cover, (cw / iw) / 0.62);
-      const w = iw * s, h = ih * s;
-      ctx.fillStyle = '#050505'; ctx.fillRect(0, 0, cw, ch);
-      ctx.drawImage(im, (cw - w) / 2, (ch - h) / 2, w, h);
-      if (h < ch) { const y0 = (ch - h) / 2, f = h * 0.18; let g = ctx.createLinearGradient(0, y0, 0, y0 + f); g.addColorStop(0, '#050505'); g.addColorStop(1, 'rgba(5,5,5,0)'); ctx.fillStyle = g; ctx.fillRect(0, y0 - 1, cw, f + 1); g = ctx.createLinearGradient(0, y0 + h - f, 0, y0 + h); g.addColorStop(0, 'rgba(5,5,5,0)'); g.addColorStop(1, '#050505'); ctx.fillStyle = g; ctx.fillRect(0, y0 + h - f, cw, f + 1); }
-      if (im === imgs[i]) last = i;
+
+    // where the film sits (CSS px). k = lid openness 0..1, z = pull-back once the screen is on
+    function layout(k, z) {
+      const cover = Math.max(W / IW, H / IH);
+      let s = W / H >= 1 ? cover * (1 - 0.26 * z) : Math.min(cover, (W / IW) / lerp(0.62, 0.9, k));
+      return { s, ox: (W - IW * s) / 2, oy: (H - IH * s) / 2 - (W / H >= 1 ? 0 : H * 0.06 * k) };
     }
-    const clamp = (v) => Math.min(1, Math.max(0, v));
+
+    // ---- 4-point homography -> CSS matrix3d (so the HTML screen sits exactly on the tilted display)
+    function solve(A, b) {
+      const n = b.length;
+      for (let c = 0; c < n; c++) {
+        let m = c; for (let r = c + 1; r < n; r++) if (Math.abs(A[r][c]) > Math.abs(A[m][c])) m = r;
+        [A[c], A[m]] = [A[m], A[c]]; [b[c], b[m]] = [b[m], b[c]];
+        for (let r = c + 1; r < n; r++) { const f = A[r][c] / A[c][c]; for (let k = c; k < n; k++) A[r][k] -= f * A[c][k]; b[r] -= f * b[c]; }
+      }
+      const x = new Array(n);
+      for (let r = n - 1; r >= 0; r--) { let v = b[r]; for (let k = r + 1; k < n; k++) v -= A[r][k] * x[k]; x[r] = v / A[r][r]; }
+      return x;
+    }
+    function homography(dst) {
+      const S = [[0, 0], [SW, 0], [SW, SH], [0, SH]], A = [], b = [];
+      for (let i = 0; i < 4; i++) {
+        const [x, y] = S[i], [u, v] = dst[i];
+        A.push([x, y, 1, 0, 0, 0, -u * x, -u * y]); b.push(u);
+        A.push([0, 0, 0, x, y, 1, -v * x, -v * y]); b.push(v);
+      }
+      const h = solve(A, b); h.push(1); return h;
+    }
+    const inv3 = (m) => {
+      const [a, b, c, d, e, f, g, h, i] = m, A = e * i - f * h, B = -(d * i - f * g), C = d * h - e * g, det = a * A + b * B + c * C;
+      return [A / det, -(b * i - c * h) / det, (b * f - c * e) / det, B / det, (a * i - c * g) / det, -(a * f - c * d) / det, C / det, -(a * h - b * g) / det, (a * e - b * d) / det];
+    };
+    let Hm = null, Hinv = null;
+
+    // ---- pointer -> local screen coords
+    let ptr = { x: SW * 0.62, y: SH * 0.45, inside: false, moved: 0 }, sm = { x: SW * 0.62, y: SH * 0.45 };
+    stage.addEventListener('pointermove', (e) => {
+      if (!Hinv) return;
+      const r = stage.getBoundingClientRect(), X = e.clientX - r.left, Y = e.clientY - r.top;
+      const [a, b, c, d, f, g, h, i, j] = Hinv, w = h * X + i * Y + j;
+      const x = (a * X + b * Y + c) / w, y = (d * X + f * Y + g) / w;
+      ptr.inside = x > 0 && x < SW && y > 0 && y < SH;
+      if (ptr.inside) { ptr.moved = Math.min(1, ptr.moved + Math.hypot(x - ptr.x, y - ptr.y) / 300); ptr.x = x; ptr.y = y; }
+    }, { passive: true });
+    stage.addEventListener('pointerleave', () => { ptr.inside = false; });
+
+    // ---- film drawing
+    let lastKey = '';
+    function drawFilm(i, L) {
+      const key = i + '|' + L.s.toFixed(4) + '|' + L.oy.toFixed(1) + '|' + W + 'x' + H;
+      if (!dirty && key === lastKey) return;
+      const im = nearest(i); if (!im) return;
+      dirty = false; if (im === imgs[i]) lastKey = key;
+      const cw = canvas.width, ch = canvas.height, s = L.s * dpr, x0 = L.ox * dpr, y0 = L.oy * dpr, w = IW * s, h = IH * s;
+      ctx.fillStyle = '#050505'; ctx.fillRect(0, 0, cw, ch);
+      ctx.drawImage(im, x0, y0, w, h);
+      const fade = (gx0, gy0, gx1, gy1, rx, ry, rw, rh) => { const g = ctx.createLinearGradient(gx0, gy0, gx1, gy1); g.addColorStop(0, '#050505'); g.addColorStop(1, 'rgba(5,5,5,0)'); ctx.fillStyle = g; ctx.fillRect(rx, ry, rw, rh); };
+      const fh = h * 0.16, fw = w * 0.1;
+      if (y0 > -2) fade(0, y0, 0, y0 + fh, 0, y0 - 1, cw, fh + 1);
+      if (y0 + h < ch + 2) fade(0, y0 + h, 0, y0 + h - fh, 0, y0 + h - fh, cw, fh + 1);
+      if (x0 > -2) fade(x0, 0, x0 + fw, 0, x0 - 1, 0, fw + 1, ch);
+      if (x0 + w < cw + 2) fade(x0 + w, 0, x0 + w - fw, 0, x0 + w - fw, 0, fw + 1, ch);
+    }
+
+    // ---- neon volcano lightning
+    const bolts = [];
+    function path(x1, y1, x2, y2, disp, out, depth) {
+      if (depth <= 0 || disp < 2) { out.push([x2, y2]); return; }
+      const mx = (x1 + x2) / 2 + (Math.random() - 0.5) * disp, my = (y1 + y2) / 2 + (Math.random() - 0.5) * disp * 0.35;
+      path(x1, y1, mx, my, disp / 2, out, depth - 1); path(mx, my, x2, y2, disp / 2, out, depth - 1);
+    }
+    function spawn(L, power = 1, from) {
+      const left = L.ox, right = L.ox + IW * L.s, top = Math.max(0, L.oy), ground = Math.min(H, L.oy + IH * L.s * 0.9);
+      let x1, y1, x2, y2;
+      if (from) { x1 = from[0]; y1 = from[1]; const a = Math.random() * Math.PI * 2, d = 60 + Math.random() * 140; x2 = x1 + Math.cos(a) * d; y2 = y1 + Math.sin(a) * d; }
+      else if (Math.random() < 0.55) {   // volcano bolt: from the lava floor upward
+        x1 = lerp(left, right, Math.random()); y1 = ground; x2 = x1 + (Math.random() - 0.5) * W * 0.35; y2 = top + Math.random() * H * 0.15;
+      } else {                           // sky bolt: from the top down to the ridge
+        x1 = lerp(-W * 0.05, W * 1.05, Math.random()); y1 = -10; x2 = x1 + (Math.random() - 0.5) * W * 0.3; y2 = lerp(H * 0.35, ground, Math.random());
+      }
+      const pts = [[x1, y1]]; const len = Math.hypot(x2 - x1, y2 - y1);
+      path(x1, y1, x2, y2, len * 0.32, pts, 7);
+      const branches = [];
+      for (let k = 0; k < 2 + Math.random() * 3; k++) {
+        const p = pts[Math.floor(pts.length * (0.2 + Math.random() * 0.6))], bp = [p];
+        const a = Math.atan2(y2 - y1, x2 - x1) + (Math.random() - 0.5) * 1.6, d = len * (0.15 + Math.random() * 0.25);
+        path(p[0], p[1], p[0] + Math.cos(a) * d, p[1] + Math.sin(a) * d, d * 0.35, bp, 5); branches.push(bp);
+      }
+      bolts.push({ pts, branches, life: 0, max: 18 + Math.random() * 22, w: (from ? 0.6 : 1) * power });
+      if (!from) gflash.style.opacity = Math.min(0.9, 0.35 + power * 0.4);
+    }
+    function stroke(pts) { bx.beginPath(); bx.moveTo(pts[0][0], pts[0][1]); for (let i = 1; i < pts.length; i++) bx.lineTo(pts[i][0], pts[i][1]); bx.stroke(); }
+    function drawBolts(L, open) {
+      bx.clearRect(0, 0, W, H);
+      if (!bolts.length) return;
+      bx.lineCap = 'round'; bx.lineJoin = 'round';
+      for (let n = bolts.length - 1; n >= 0; n--) {
+        const b = bolts[n]; b.life++;
+        if (b.life > b.max) { bolts.splice(n, 1); continue; }
+        const t = b.life / b.max, flick = (Math.random() < 0.25 ? 0.35 : 1), a = (1 - t) * (1 - t) * flick;
+        bx.shadowColor = '#39FF7A'; bx.shadowBlur = 34;
+        bx.strokeStyle = `rgba(57,255,122,${0.6 * a})`; bx.lineWidth = 11 * b.w; stroke(b.pts);
+        bx.strokeStyle = `rgba(57,255,122,${0.3 * a})`; bx.lineWidth = 4 * b.w; b.branches.forEach(stroke);
+        bx.shadowBlur = 0; bx.strokeStyle = `rgba(225,255,235,${a})`; bx.lineWidth = 2.4 * b.w; stroke(b.pts);
+        bx.lineWidth = 1; b.branches.forEach(stroke);
+      }
+      if (open > 0.9) {                  // cut the laptop out, so the bolts strike behind it
+        bx.globalCompositeOperation = 'destination-out'; bx.fillStyle = '#000'; bx.beginPath();
+        SIL.forEach(([x, y], i) => { const X = L.ox + x * L.s, Y = L.oy + y * L.s; i ? bx.lineTo(X, Y) : bx.moveTo(X, Y); });
+        bx.closePath(); bx.fill(); bx.globalCompositeOperation = 'source-over';
+      }
+    }
+
+    // ---- motion graphics on the laptop display (960x600 canvas, stretched to the 1440x900 screen)
+    const FW = 960, FH = 600, embers = [], sparks = [];
+    for (let i = 0; i < 70; i++) embers.push({ x: Math.random() * FW, y: Math.random() * FH, v: 0.2 + Math.random() * 0.8, r: 0.6 + Math.random() * 1.8, o: Math.random() });
+    const ridge = []; for (let i = 0; i <= 48; i++) { const x = i / 48, peak = 1 - Math.abs(x - 0.5) * 2; ridge.push([x, 0.8 - peak * 0.13 - Math.sin(i * 1.7) * 0.014 - Math.random() * 0.01]); }
+    let ft = 0;
+    function drawScreen(px, py, reduce) {
+      const g = fctx; ft += reduce ? 0 : 1;
+      const cx = px / SW * FW, cy = py / SH * FH, hz = FH * 0.8;
+      g.fillStyle = '#05040a'; g.fillRect(0, 0, FW, FH);
+      let rg = g.createRadialGradient(cx, cy, 0, cx, cy, FW * 0.55); rg.addColorStop(0, 'rgba(57,255,122,0.20)'); rg.addColorStop(1, 'rgba(57,255,122,0)'); g.fillStyle = rg; g.fillRect(0, 0, FW, FH);
+      rg = g.createRadialGradient(FW * 0.5, FH * 1.05, 0, FW * 0.5, FH * 1.05, FW * 0.7); rg.addColorStop(0, 'rgba(255,106,26,0.38)'); rg.addColorStop(1, 'rgba(255,106,26,0)'); g.fillStyle = rg; g.fillRect(0, 0, FW, FH);
+      // neon grid floor, vanishing point follows the cursor
+      const vx = FW * 0.5 + (cx - FW * 0.5) * 0.35;
+      g.lineWidth = 1;
+      for (let i = -14; i <= 14; i++) { g.strokeStyle = `rgba(57,255,122,${0.28 - Math.abs(i) * 0.012})`; g.beginPath(); g.moveTo(vx, hz); g.lineTo(FW * 0.5 + i * FW * 0.11, FH); g.stroke(); }
+      const off = (ft * 0.012) % 1;
+      for (let k = 0; k < 9; k++) { const z = (k + off) / 9, y = hz + (FH - hz) * z * z; g.strokeStyle = `rgba(57,255,122,${0.08 + z * 0.3})`; g.beginPath(); g.moveTo(0, y); g.lineTo(FW, y); g.stroke(); }
+      // glowing BlazeRidge ridge on the horizon
+      g.save(); g.shadowColor = '#FF6A1A'; g.shadowBlur = 18; g.strokeStyle = '#FF6A1A'; g.lineWidth = 2.2; g.beginPath();
+      ridge.forEach(([x, y], i) => { const X = x * FW + (cx - FW / 2) * 0.04, Y = y * FH; i ? g.lineTo(X, Y) : g.moveTo(X, Y); }); g.stroke(); g.restore();
+      g.fillStyle = 'rgba(5,4,10,0.92)'; g.beginPath(); ridge.forEach(([x, y], i) => { const X = x * FW + (cx - FW / 2) * 0.04; i ? g.lineTo(X, y * FH + 2) : g.moveTo(X, y * FH + 2); }); g.lineTo(FW, hz + 2); g.lineTo(0, hz + 2); g.closePath(); g.fill();
+      // embers rising, pulled toward the cursor
+      embers.forEach((e) => {
+        if (!reduce) { e.y -= e.v; e.x += Math.sin((ft + e.o * 500) * 0.02) * 0.3 + (cx - e.x) * 0.0016; if (e.y < -5) { e.y = FH + 5; e.x = Math.random() * FW; } }
+        g.fillStyle = `rgba(255,${120 + (e.o * 80) | 0},40,${0.35 + e.o * 0.5})`; g.beginPath(); g.arc(e.x, e.y, e.r, 0, 6.283); g.fill();
+      });
+      // green sparks thrown by the cursor
+      if (ptr.inside && !reduce && Math.random() < 0.6) for (let k = 0; k < 2; k++) { const a = Math.random() * 6.283, sp = 1 + Math.random() * 3; sparks.push({ x: cx, y: cy, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 0.6, l: 0, m: 30 + Math.random() * 30 }); }
+      for (let n = sparks.length - 1; n >= 0; n--) {
+        const p = sparks[n]; p.l++; p.x += p.vx; p.y += p.vy; p.vy += 0.04; p.vx *= 0.98;
+        if (p.l > p.m) { sparks.splice(n, 1); continue; }
+        const a = 1 - p.l / p.m; g.strokeStyle = `rgba(150,255,190,${a})`; g.lineWidth = 1.4; g.beginPath(); g.moveTo(p.x, p.y); g.lineTo(p.x - p.vx * 3, p.y - p.vy * 3); g.stroke();
+      }
+      // cursor ring
+      if (ptr.inside) { g.save(); g.shadowColor = '#39FF7A'; g.shadowBlur = 16; g.strokeStyle = 'rgba(57,255,122,0.9)'; g.lineWidth = 1.6; g.beginPath(); g.arc(cx, cy, 14 + Math.sin(ft * 0.12) * 3, 0, 6.283); g.stroke(); g.restore(); }
+    }
+
+    // ---- main loop
+    let smooth = 0, lit = false, burst = false, lastSpawnFromScreen = 0;
     function tick() {
+      requestAnimationFrame(tick);
       const r = section.getBoundingClientRect(), total = r.height - innerHeight;
+      if (r.bottom < -50 || r.top > innerHeight + 50) return;          // off screen: idle
       const target = total > 0 ? clamp(-r.top / total) : 0;
       smooth = reduce ? target : smooth + (target - smooth) * 0.14;
       if (Math.abs(target - smooth) < 0.0005) smooth = target;
-      if (r.bottom > 0) draw(Math.round(clamp(smooth / END) * (FRAMES - 1)));
-      const a = clamp(1 - smooth / 0.07), b = clamp((smooth - 0.86) / 0.09);
+      const p = smooth, k = clamp(p / T_OPEN), on = sstep(T_ON0, T_ON1, p), z = sstep(T_ON0, 0.68, p);
+      const L = layout(k, z);
+      drawFilm(Math.round(k * OPEN), L);
+
+      // screen: map the virtual 1440x900 page onto the display corners
+      if (on > 0) {
+        Hm = homography(SCREEN.map(([x, y]) => [L.ox + x * L.s, L.oy + y * L.s])); Hinv = inv3(Hm);
+        const h = Hm;
+        scr.style.transform = `matrix3d(${h[0]},${h[3]},0,${h[6]},${h[1]},${h[4]},0,${h[7]},0,0,1,0,${h[2]},${h[5]},0,${h[8]})`;
+        scr.style.opacity = Math.min(1, on * 1.6).toFixed(3);
+        scr.style.clipPath = `inset(${((1 - sstep(0, 0.6, on)) * 49.5).toFixed(2)}% 0)`;
+        scr.style.setProperty('--flash', (Math.sin(Math.PI * clamp(on / 0.7)) * 0.55).toFixed(3));
+        if (!scr.classList.contains('vis')) scr.classList.add('vis');
+        sm.x = reduce ? ptr.x : lerp(sm.x, ptr.x, 0.12); sm.y = reduce ? ptr.y : lerp(sm.y, ptr.y, 0.12);
+        if (!ptr.inside && !reduce) { ptr.x = SW * (0.62 + Math.sin(performance.now() / 2400) * 0.12); ptr.y = SH * (0.45 + Math.cos(performance.now() / 3100) * 0.1); }
+        scr.style.setProperty('--px', (sm.x / SW - 0.5).toFixed(4)); scr.style.setProperty('--py', (sm.y / SH - 0.5).toFixed(4));
+        drawScreen(sm.x, sm.y, reduce);
+      } else if (scr.classList.contains('vis')) { scr.classList.remove('vis'); Hinv = null; }
+      const live = on > 0.92;
+      scr.classList.toggle('live', live); stage.classList.toggle('on', live);
+      if (live && !lit) { lit = true; scr.classList.add('on'); }
+      if (on < 0.05 && lit) { lit = false; scr.classList.remove('on'); }
+
+      // lightning: rare while the lid opens, a burst when the screen powers on, steady storm afterwards
+      if (!reduce) {
+        if (on > 0.5 && !burst) { burst = true; for (let n = 0; n < 4; n++) spawn(L, 1.3); }
+        if (on < 0.1) burst = false;
+        const rate = 0.015 + k * 0.025 + on * 0.085;
+        if (Math.random() < rate) spawn(L, 0.7 + Math.random() * 0.6);
+        if (live && ptr.inside && ptr.moved > 0.6 && performance.now() - lastSpawnFromScreen > 260) {
+          lastSpawnFromScreen = performance.now(); ptr.moved = 0;
+          const c = SCREEN[Math.floor(Math.random() * 4)]; spawn(L, 0.7, [L.ox + c[0] * L.s, L.oy + c[1] * L.s]);
+        }
+        drawBolts(L, k);
+        gflash.style.opacity = (parseFloat(gflash.style.opacity || 0) * 0.86).toFixed(3);
+      }
+
+      const a = clamp(1 - p / 0.07);
       iStart.style.opacity = a; iStart.style.transform = 'translateY(' + (-(1 - a) * 30) + 'px)';
-      iEnd.style.opacity = b; iEnd.style.transform = 'translateY(' + ((1 - b) * 24) + 'px)'; iEnd.classList.toggle('live', b > 0.5);
-      requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
   })();
